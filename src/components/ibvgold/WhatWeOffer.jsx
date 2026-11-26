@@ -46,7 +46,7 @@ export default function WhatWeOffer() {
               <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
                 {item.label}
               </p>
-              <h3 className="text-xl font-light leading-tight text-white md:text-2xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+              <h3 className="text-xl font-semibold leading-tight text-white md:text-2xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
                 {item.title}
               </h3>
             </div>

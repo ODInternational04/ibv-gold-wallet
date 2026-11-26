@@ -73,11 +73,11 @@ export default function AppLayout() {
         <div className="px-5 py-5">
           <Link to="/" className="flex items-center gap-0.5">
             <span
-              className="text-[#396978] font-light text-2xl"
+              className="text-[#396978] font-semibold text-2xl"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >IBV</span>
             <span
-              className="text-[#22303a]/70 font-light text-2xl tracking-widest"
+              className="text-[#22303a]/70 font-semibold text-2xl tracking-widest"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >&nbsp;GOLD</span>
           </Link>

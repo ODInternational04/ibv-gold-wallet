@@ -17,8 +17,8 @@ export default function AdminLayout() {
       <aside className="w-56 flex flex-col border-r border-white/8 bg-[#0a0c0e]">
         <div className="px-5 py-6 border-b border-white/8">
           <div className="flex items-center gap-1">
-            <span className="text-[#396978] text-xl font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/50 text-xl font-light tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
+            <span className="text-[#396978] text-xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-white/50 text-xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
           </div>
           <p className="mt-1 text-[10px] font-bold tracking-[0.25em] text-[#396978]/70">ADMIN PORTAL</p>
         </div>

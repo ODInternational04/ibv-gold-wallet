@@ -12,7 +12,7 @@ export default function Notifications() {
     <div className="max-w-2xl">
       <div className="flex items-center gap-3 mb-6">
         <Bell className="w-4 h-4 text-[#396978]/75" />
-        <h2 className="text-xl font-light text-[#22303a]/85" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Notifications</h2>
+        <h2 className="text-xl font-semibold text-[#22303a]/85" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Notifications</h2>
       </div>
       {(error || actionError) && <p role="alert" className="mb-5 rounded-xl bg-red-50 p-4 text-sm text-red-700">{(error || actionError).message}</p>}
       {unread > 0 && <button className="mb-5 rounded-lg bg-[#396978] px-4 py-2 text-sm text-white disabled:opacity-50" disabled={busy} onClick={readAll}>Mark all read</button>}

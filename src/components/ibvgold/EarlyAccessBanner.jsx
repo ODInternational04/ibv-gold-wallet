@@ -9,7 +9,7 @@ export default function EarlyAccessBanner() {
           <span className="mb-4 inline-block rounded-full border border-[#C9A84C]/30 px-3 py-1 text-xs font-bold tracking-widest text-[#C9A84C]">
             GET EARLY ACCESS
           </span>
-          <h2 className="mb-4 text-3xl font-light text-white md:text-4xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          <h2 className="mb-4 text-3xl font-semibold text-white md:text-4xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Want New Tools for Your Gold?
           </h2>
           <p className="text-white/50 text-sm md:text-base leading-relaxed mb-6 max-w-lg">

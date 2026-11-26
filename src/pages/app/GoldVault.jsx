@@ -91,7 +91,7 @@ function BalanceDialog() {
         <DialogContent className="max-w-xl border border-[#396978]/30 bg-[linear-gradient(160deg,#24404b_0%,#1d3039_55%,#18232b_100%)] p-0 text-white shadow-[0_28px_80px_rgba(32,63,74,0.32)]">
           <DialogHeader className="border-b border-[#7fb7c9]/14 px-6 py-5 text-left">
             <DialogTitle
-              className="text-2xl font-light text-white"
+              className="text-2xl font-semibold text-white"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >
               Balance Summary
@@ -115,7 +115,7 @@ function BalanceDialog() {
                     {item.label.toUpperCase()}
                   </p>
                   <p
-                    className="mt-2 text-2xl font-light text-white"
+                    className="mt-2 text-2xl font-semibold text-white"
                     style={{
                       fontFamily: "'Cormorant Garamond', Georgia, serif",
                     }}
@@ -299,7 +299,7 @@ export default function GoldVault() {
                 <BalanceDialog />
               </div>
               <h2
-                className="text-3xl font-light leading-[1.2] text-white"
+                className="text-3xl font-semibold leading-[1.2] text-white"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 Redeem physical stock
@@ -350,7 +350,7 @@ export default function GoldVault() {
                     </p>
                   </div>
                   <p
-                    className="text-xl font-light text-white"
+                    className="text-xl font-semibold text-white"
                     style={{
                       fontFamily: "'Cormorant Garamond', Georgia, serif",
                     }}
@@ -382,7 +382,7 @@ export default function GoldVault() {
                 SELECTED REDEMPTION
               </p>
               <h3
-                className="mt-2 text-3xl font-light text-white"
+                className="mt-2 text-3xl font-semibold text-white"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 {selectedProduct.name}
@@ -422,7 +422,7 @@ export default function GoldVault() {
                   REDEMPTION VALUE
                 </p>
                 <p
-                  className="mt-1 text-3xl font-light text-white"
+                  className="mt-1 text-3xl font-semibold text-white"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   {selectedProduct.value}
@@ -461,7 +461,7 @@ export default function GoldVault() {
           <div className="overflow-hidden rounded-[22px] border border-[#2a4050] bg-[#1a2c38]">
             <div className="flex items-center justify-between border-b border-white/6 px-5 py-4">
               <h3
-                className="text-base font-light text-white/75"
+                className="text-base font-semibold text-white/75"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 Redemption History
@@ -540,7 +540,7 @@ export default function GoldVault() {
               </div>
               <div className="text-center">
                 <p
-                  className="text-2xl font-light text-white"
+                  className="text-2xl font-semibold text-white"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   Request submitted
@@ -555,7 +555,7 @@ export default function GoldVault() {
             <>
               <DialogHeader className="border-b border-[#7fb7c9]/14 px-6 py-5 text-left">
                 <DialogTitle
-                  className="text-2xl font-light text-white"
+                  className="text-2xl font-semibold text-white"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   Confirm Redemption
@@ -577,7 +577,7 @@ export default function GoldVault() {
                   </div>
                   <div>
                     <p
-                      className="text-xl font-light text-white"
+                      className="text-xl font-semibold text-white"
                       style={{
                         fontFamily: "'Cormorant Garamond', Georgia, serif",
                       }}

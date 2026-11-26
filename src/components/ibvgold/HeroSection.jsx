@@ -38,7 +38,7 @@ export default function HeroSection() {
         transition={{ duration: 0.8 }}
         className="z-10 w-full lg:w-1/2 text-center lg:text-left"
       >
-        <h1 className="text-5xl font-light leading-tight text-[#162028] lg:text-6xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <h1 className="text-5xl font-semibold leading-tight text-[#162028] lg:text-6xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
           Real gold.
           <br />
           <span className="text-[#C9A84C]">In your pocket.</span>

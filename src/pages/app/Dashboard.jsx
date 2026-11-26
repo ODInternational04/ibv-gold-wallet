@@ -74,13 +74,13 @@ export default function Dashboard() {
           </div>
           <p className="text-[#8d979d] text-xs mb-1 tracking-wide">Available balance</p>
           <p
-            className="text-[#22303a] font-light text-3xl mb-3"
+            className="text-[#22303a] font-semibold text-3xl mb-3"
             style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
           >{holdingsLoading ? '...' : `${ozDisplay} oz`}</p>
           <p className="text-[#8d979d] text-xs mb-1 tracking-wide">Redeemable value</p>
           <div className="flex items-center gap-2 mb-3">
             <p
-              className="text-[#22303a] font-light text-lg"
+              className="text-[#22303a] font-semibold text-lg"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >{priceLoading || holdingsLoading ? 'Loading…' : `ZAR ${zarDisplay}`}</p>
             <Info className="w-3.5 h-3.5 text-[#b0bcc5]" />
@@ -108,7 +108,7 @@ export default function Dashboard() {
         <div className="rounded-xl border border-[#e5dfd5] bg-white p-4 sm:p-5">
           <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <h3
-              className="text-[#22303a]/80 font-light text-lg"
+              className="text-[#22303a]/80 font-semibold text-lg"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >Latest Transactions</h3>
             <button className="flex items-center gap-2 text-left text-xs text-[#8d979d] sm:text-right">

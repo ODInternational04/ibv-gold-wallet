@@ -21,6 +21,7 @@
   height: 100vh;
 }
 .admin-brand {
+  font-weight: 600;
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 30px;
   letter-spacing: 2px;
@@ -42,6 +43,7 @@
   gap: 8px;
 }
 .admin-nav a {
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -130,7 +132,7 @@
 }
 .admin-page-header h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 42px;
   line-height: 1.1;
 }
@@ -156,7 +158,7 @@
   color: #dae9f1;
   padding: 11px 16px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   white-space: nowrap;
 }
 .admin-button:hover {
@@ -202,7 +204,7 @@
 }
 .admin-card-value {
   font-size: 31px;
-  font-weight: 500;
+  font-weight: 600;
   margin-top: 20px;
   letter-spacing: -1px;
 }
@@ -214,7 +216,7 @@
 .admin-card h2,
 .admin-panel h2 {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .admin-panels {
   display: grid;
@@ -257,11 +259,11 @@
   font-size: 14px;
 }
 .admin-table th {
+  font-weight: 600;
   padding: 17px 20px;
   background: #182a36;
   color: #96acbb;
   font-size: 12px;
-  font-weight: 500;
   letter-spacing: 0.8px;
   white-space: nowrap;
 }

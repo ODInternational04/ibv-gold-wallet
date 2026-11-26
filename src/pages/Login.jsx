@@ -37,8 +37,8 @@ export default function Login() {
       <div className="hidden w-1/2 items-center justify-center bg-[linear-gradient(145deg,_#161106_0%,_#0a0c0e_58%)] md:flex">
         <div className="text-center">
           <div className="flex items-center gap-1 justify-center mb-4">
-            <span className="text-[#396978] text-5xl font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/70 text-4xl font-light tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
+            <span className="text-[#396978] text-5xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-white/70 text-4xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
           </div>
           <p className="text-[#7fb7c9]/70 text-sm font-semibold tracking-[0.35em]">WELCOME BACK</p>
         </div>
@@ -52,7 +52,7 @@ export default function Login() {
             Back
           </Link>
 
-          <h1 className="mb-2 text-4xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h1>
+          <h1 className="mb-2 text-4xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h1>
           <p className="mb-8 text-sm text-[#66737c]">Welcome back. Enter your credentials to continue.</p>
 
           <form onSubmit={handleSubmit} className="space-y-5">

@@ -8,7 +8,7 @@ export default function Rewards() {
     <div className="max-w-2xl">
       <div className="mb-5 flex items-center gap-3">
         <Trophy className="w-4 h-4 text-[#396978]/75" />
-        <h2 className="text-xl font-light text-[#22303a]/85" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Invite & Earn</h2>
+        <h2 className="text-xl font-semibold text-[#22303a]/85" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Invite & Earn</h2>
       </div>
 
       {/* Tabs */}
@@ -32,7 +32,7 @@ export default function Rewards() {
       {tab === "progress" ? (
         <div className="space-y-4">
           <div className="text-center py-4">
-            <h1 className="text-3xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+            <h1 className="text-3xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
               <span className="text-[#C9A84C]">Unlock</span>{" "}
               Gold Rewards
             </h1>

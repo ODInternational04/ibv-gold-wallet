@@ -52,7 +52,7 @@ export default function SignUp() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#f7f4ee] px-6">
         <div className="w-full max-w-md text-center">
-          <h2 className="mb-4 text-3xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          <h2 className="mb-4 text-3xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Check your email
           </h2>
           <p className="mb-6 text-sm text-[#66737c]">
@@ -72,8 +72,8 @@ export default function SignUp() {
       <div className="hidden w-1/2 items-center justify-center bg-[linear-gradient(145deg,_#161106_0%,_#0a0c0e_58%)] md:flex">
         <div className="text-center">
           <div className="flex items-center gap-1 justify-center mb-4">
-            <span className="text-[#396978] text-5xl font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/70 text-4xl font-light tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
+            <span className="text-[#396978] text-5xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-white/70 text-4xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
           </div>
           <p className="text-[#7fb7c9]/70 text-sm font-semibold tracking-[0.35em]">CREATE AN ACCOUNT</p>
         </div>
@@ -87,7 +87,7 @@ export default function SignUp() {
             Back
           </Link>
 
-          <h1 className="mb-2 text-4xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Create Account</h1>
+          <h1 className="mb-2 text-4xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Create Account</h1>
           <p className="mb-8 text-sm text-[#66737c]">Join IBV Gold and start your gold-backed financial journey.</p>
 
           <form onSubmit={handleSubmit} className="space-y-5">

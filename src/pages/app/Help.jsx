@@ -16,7 +16,7 @@ export default function Help() {
     <div className="max-w-2xl space-y-6">
       <div className="flex items-center gap-3 mb-2">
         <HelpCircle className="w-4 h-4 text-[#396978]/75" />
-        <h2 className="text-xl font-light text-[#22303a]/85" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Help Center</h2>
+        <h2 className="text-xl font-semibold text-[#22303a]/85" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Help Center</h2>
       </div>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">

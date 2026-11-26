@@ -28,7 +28,7 @@ export default function Explore() {
       {/* Right - News & Videos */}
       <div className="w-full flex-shrink-0 min-[900px]:w-80">
         <div className="h-full rounded-[24px] border border-[#e5dfd5] bg-white p-5">
-          <h3 className="mb-4 text-xl font-light text-[#22303a]/80" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Gold News and Videos</h3>
+          <h3 className="mb-4 text-xl font-semibold text-[#22303a]/80" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Gold News and Videos</h3>
 
           <div className="flex gap-2 mb-5">
             <button

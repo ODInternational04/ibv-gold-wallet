@@ -135,7 +135,7 @@ export default function Registration() {
       <div className="flex min-h-screen items-center justify-center bg-[#f7f4ee] px-6">
         <div className="w-full max-w-md text-center">
           <CheckCircle2 className="w-16 h-16 text-[#396978] mx-auto mb-6" />
-          <h2 className="mb-3 text-3xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          <h2 className="mb-3 text-3xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
             Verification Submitted
           </h2>
           <p className="mb-6 text-sm text-[#66737c] leading-relaxed">
@@ -158,8 +158,8 @@ export default function Registration() {
       <div className="hidden w-1/2 items-center justify-center bg-[linear-gradient(145deg,_#161106_0%,_#0a0c0e_58%)] md:flex">
         <div className="text-center px-10">
           <div className="flex items-center gap-1 justify-center mb-6">
-            <span className="text-[#396978] text-5xl font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/70 text-4xl font-light tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
+            <span className="text-[#396978] text-5xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-white/70 text-4xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
           </div>
           <p className="text-[#7fb7c9]/70 text-sm font-semibold tracking-[0.35em] mb-10">IDENTITY VERIFICATION</p>
           <div className="space-y-6 text-left">
@@ -198,7 +198,7 @@ export default function Registration() {
           {/* Step 0 — ID Number */}
           {step === 0 && (
             <>
-              <h1 className="mb-2 text-4xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Your ID Number</h1>
+              <h1 className="mb-2 text-4xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Your ID Number</h1>
               <p className="mb-8 text-sm text-[#66737c]">Enter your 13-digit South African identity number exactly as it appears on your ID document.</p>
               <div className="mb-6">
                 <label className="block mb-1.5 text-xs font-semibold text-[#22303a] uppercase tracking-wider">RSA ID Number</label>
@@ -227,7 +227,7 @@ export default function Registration() {
           {/* Step 1 — ID Document */}
           {step === 1 && (
             <>
-              <h1 className="mb-2 text-4xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>ID Document</h1>
+              <h1 className="mb-2 text-4xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>ID Document</h1>
               <p className="mb-8 text-sm text-[#66737c]">Upload a clear photo or scan of your South African ID book, smart ID card, or passport.</p>
               <FileDropZone
                 label="Upload ID Document"
@@ -249,7 +249,7 @@ export default function Registration() {
           {/* Step 2 — Utility Bill */}
           {step === 2 && (
             <>
-              <h1 className="mb-2 text-4xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Utility Bill</h1>
+              <h1 className="mb-2 text-4xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Utility Bill</h1>
               <p className="mb-8 text-sm text-[#66737c]">Upload a recent utility bill (electricity, water, municipal rates) dated within the last 3 months as proof of address.</p>
               <FileDropZone
                 label="Upload Utility Bill"
@@ -271,7 +271,7 @@ export default function Registration() {
           {/* Step 3 — Review & Submit */}
           {step === 3 && (
             <>
-              <h1 className="mb-2 text-4xl font-light text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Review & Submit</h1>
+              <h1 className="mb-2 text-4xl font-semibold text-[#162028]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Review & Submit</h1>
               <p className="mb-6 text-sm text-[#66737c]">Please confirm your submission before sending for review.</p>
 
               <div className="space-y-3 mb-6">

@@ -80,7 +80,7 @@ function ReviewModal({ record, onClose, onUpdate }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4" onClick={onClose}>
       <div className="w-full max-w-lg rounded-2xl border border-white/10 bg-[#141820] p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-        <h2 className="mb-1 text-2xl font-light text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <h2 className="mb-1 text-2xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
           Review Verification
         </h2>
         <p className="mb-5 text-sm text-white/40">{record.email}</p>
@@ -193,7 +193,7 @@ export default function AdminVerifications() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-light text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Verifications</h1>
+          <h1 className="text-3xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Verifications</h1>
           <p className="mt-1 text-sm text-white/40">{records.length} record{records.length !== 1 ? 's' : ''}</p>
         </div>
         <button

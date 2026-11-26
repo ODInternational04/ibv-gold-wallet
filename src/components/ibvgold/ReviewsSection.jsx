@@ -56,7 +56,7 @@ function ReviewCard({ review }) {
       <Stars />
       <p className="text-sm font-semibold text-white">{review.user}</p>
       <p className="text-white/30 text-xs mt-1 mb-4">{review.date}</p>
-      <h5 className="mb-2 text-base font-light text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>{review.title}</h5>
+      <h5 className="mb-2 text-base font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>{review.title}</h5>
       <p className="text-white/50 text-xs leading-relaxed">{review.text}</p>
     </div>
   );

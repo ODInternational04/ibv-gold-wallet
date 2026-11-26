@@ -42,7 +42,7 @@
 .withdrawal-balances strong {
   display: block;
   font-size: 23px;
-  font-weight: 500;
+  font-weight: 600;
   color: #22303a;
   margin-top: 8px;
 }
@@ -154,7 +154,7 @@
 }
 .withdrawal-history strong {
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
 }
 .withdrawal-history p {
   font-size: 14px;

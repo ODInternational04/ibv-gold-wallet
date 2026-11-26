@@ -29,7 +29,7 @@ export default function GoldPriceChart({ compact = false }) {
   const chartContent = (
     <>
       <div className="mb-3 border-b border-white/8 pb-3">
-        <p className="text-3xl font-light text-white sm:text-[2rem]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <p className="text-3xl font-semibold text-white sm:text-[2rem]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
           {priceLoading ? <span className="text-white/40 text-2xl">Loading…</span> : <>{displayPrice} <span className="text-sm font-normal text-white/45">/oz</span></>}
         </p>
         <p className="text-white/30 text-xs mt-1">Live ZAR spot price</p>

@@ -42,8 +42,8 @@ export default function AdminLogin() {
         {/* Logo */}
         <div className="mb-10 text-center">
           <div className="flex items-center justify-center gap-1 mb-2">
-            <span className="text-[#396978] text-3xl font-light" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/50 text-3xl font-light tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
+            <span className="text-[#396978] text-3xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-white/50 text-3xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
           </div>
           <div className="flex items-center justify-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-[#396978]/70" />
@@ -52,7 +52,7 @@ export default function AdminLogin() {
         </div>
 
         <div className="rounded-2xl border border-white/8 bg-[#141820] p-8">
-          <h2 className="mb-6 text-2xl font-light text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h2>
+          <h2 className="mb-6 text-2xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>

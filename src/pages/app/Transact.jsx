@@ -41,7 +41,7 @@ export default function Transact() {
       <div className="flex items-center gap-3 mb-6">
         <ArrowLeftRight className="w-4 h-4 text-[#7fb7c9]/70" />
         <h2
-          className="text-[#22303a]/80 font-light text-xl"
+          className="text-[#22303a]/80 font-semibold text-xl"
           style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
         >Transact</h2>
       </div>
@@ -87,7 +87,7 @@ export default function Transact() {
                     </div>
                   </div>
                   <h3
-                    className="text-3xl font-light text-white"
+                    className="text-3xl font-semibold text-white"
                     style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                   >Choose a vaulted product</h3>
                   <p className="text-sm text-white/40">Exchange-style buying with clear pricing, real product imagery, and one-tap selection.</p>
@@ -144,7 +144,7 @@ export default function Transact() {
                 <div className="border-b border-[#396978]/10 px-5 py-4">
                   <p className="text-[10px] font-semibold tracking-[0.28em] text-[#7fb7c9]/55">SELECTED ORDER</p>
                   <h3
-                    className="mt-2 text-3xl font-light text-white"
+                    className="mt-2 text-3xl font-semibold text-white"
                     style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                   >{selectedProduct.name}</h3>
                 </div>
@@ -168,7 +168,7 @@ export default function Transact() {
                   <div className="rounded-xl border border-[#C9A84C]/15 bg-[#C9A84C]/6 p-4">
                     <p className="text-[10px] tracking-[0.22em] text-[#C9A84C]/55">TOTAL DUE</p>
                     <p
-                      className="mt-1 text-3xl font-light text-white"
+                      className="mt-1 text-3xl font-semibold text-white"
                       style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                     >{selectedProduct.price}</p>
                     <p className="mt-2 text-xs leading-5 text-white/35">Vaulted, insured and ready for settlement once identity verification is complete.</p>
