@@ -8,8 +8,8 @@ export default function AdminRoute() {
 
   if (isLoadingAuth || roleLoading) {
     return (
-      <div className="fixed inset-0 flex items-center justify-center bg-[#0a0c0e]">
-        <div className="w-8 h-8 border-4 border-[#396978]/30 border-t-[#396978] rounded-full animate-spin" />
+      <div className="fixed inset-0 flex items-center justify-center bg-white">
+        <div className="w-8 h-8 border-4 border-[#92702b]/30 border-t-[#92702b] rounded-full animate-spin" />
       </div>
     );
   }

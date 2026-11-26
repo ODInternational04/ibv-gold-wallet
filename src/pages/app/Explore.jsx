@@ -15,11 +15,11 @@ export default function Explore() {
     <div className="flex flex-col gap-5 min-[900px]:flex-row">
       {/* Left - Gold Price */}
       <div className="flex-1">
-        <div className="mb-5 overflow-hidden rounded-[24px] border border-[#396978]/22 bg-[#1e2c32]">
-          <div className="flex items-center gap-2 border-b border-white/6 px-5 py-4">
-            <span className="rounded bg-[#C9A84C]/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-[0.2em] text-[#C9A84C]">AU</span>
-            <Scale className="w-4 h-4 text-[#C9A84C]/65" />
-            <span className="text-white/70 text-xs font-semibold tracking-widest">GOLD PRICE</span>
+        <div className="mb-5 overflow-hidden rounded-[24px] border border-[#dedbd4] bg-[#ffffff]">
+          <div className="flex items-center gap-2 border-b border-[#e3e0da] px-5 py-4">
+            <span className="rounded bg-[#faf3e3] px-1.5 py-0.5 text-sm font-semibold tracking-[0.2em] text-[#785616]">AU</span>
+            <Scale className="w-4 h-4 text-[#785616]" />
+            <span className="text-[#26231f] text-sm font-semibold tracking-widest">GOLD PRICE</span>
           </div>
           <GoldPriceChart compact />
         </div>
@@ -27,19 +27,19 @@ export default function Explore() {
 
       {/* Right - News & Videos */}
       <div className="w-full flex-shrink-0 min-[900px]:w-80">
-        <div className="h-full rounded-[24px] border border-[#e5dfd5] bg-white p-5">
-          <h3 className="mb-4 text-xl font-semibold text-[#22303a]/80" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Gold News and Videos</h3>
+        <div className="h-full rounded-[24px] border border-[#dedbd4] bg-white p-5">
+          <h3 className="mb-4 text-xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Gold News and Videos</h3>
 
           <div className="flex gap-2 mb-5">
             <button
               onClick={() => setTab("news")}
-              className={`flex-1 rounded-xl py-2 text-xs font-bold transition-colors ${tab === "news" ? "bg-[#396978]/14 text-[#396978] border border-[#396978]/22" : "bg-[#f0ece4] text-[#66737c] hover:text-[#22303a]"}`}
+              className={`flex-1 rounded-xl py-2 text-sm font-bold transition-colors ${tab === "news" ? "bg-[#faf3e3] text-[#785616] border border-[#d8bd83]" : "bg-[#ffffff] text-[#57534c] hover:text-[#26231f]"}`}
             >
               News
             </button>
             <button
               onClick={() => setTab("videos")}
-              className={`flex-1 rounded-xl py-2 text-xs font-bold transition-colors ${tab === "videos" ? "bg-[#396978]/14 text-[#396978] border border-[#396978]/22" : "bg-[#f0ece4] text-[#66737c] hover:text-[#22303a]"}`}
+              className={`flex-1 rounded-xl py-2 text-sm font-bold transition-colors ${tab === "videos" ? "bg-[#ffffff] text-[#57534c] border border-[#dedbd4]" : "bg-[#ffffff] text-[#57534c] hover:text-[#26231f]"}`}
             >
               Videos
             </button>
@@ -47,12 +47,12 @@ export default function Explore() {
 
           <div className="space-y-4">
             {mockVideos.map((v, i) => (
-              <div key={i} className="flex cursor-pointer gap-3 border-b border-[#f0ece4] pb-4 last:border-0 hover:opacity-80">
-                <div className="h-12 w-16 flex-shrink-0 rounded bg-[#e5dfd5]" />
+              <div key={i} className="flex cursor-pointer gap-3 border-b border-[#dedbd4] pb-4 last:border-0 hover:opacity-80">
+                <div className="h-12 w-16 flex-shrink-0 rounded bg-[#ffffff]" />
                 <div>
-                  <p className="text-[#8d979d] text-[10px] mb-1">{v.source} {v.date}</p>
-                  <p className="mb-1 text-xs font-semibold text-[#22303a]/85 line-clamp-2">{v.title}</p>
-                  <p className="text-[#8d979d] text-[10px] line-clamp-2">{v.excerpt}</p>
+                  <p className="text-[#57534c] text-sm mb-1">{v.source} {v.date}</p>
+                  <p className="mb-1 text-sm font-semibold text-[#26231f] line-clamp-2">{v.title}</p>
+                  <p className="text-[#57534c] text-sm line-clamp-2">{v.excerpt}</p>
                 </div>
               </div>
             ))}

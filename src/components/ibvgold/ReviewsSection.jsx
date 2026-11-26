@@ -44,7 +44,7 @@ function Stars() {
   return (
     <div className="flex gap-0.5 mb-3">
       {Array(5).fill(0).map((_, i) => (
-        <Star key={i} className="h-3.5 w-3.5 fill-[#C9A84C] text-[#C9A84C]" />
+        <Star key={i} className="h-3.5 w-3.5 fill-[#C9A84C] text-[#785616]" />
       ))}
     </div>
   );
@@ -52,12 +52,12 @@ function Stars() {
 
 function ReviewCard({ review }) {
   return (
-    <div className="mx-3 w-72 flex-shrink-0 rounded-xl border border-[#396978]/22 bg-[#1e2c32] p-6">
+    <div className="mx-3 w-72 flex-shrink-0 rounded-xl border border-[#dedbd4] bg-[#ffffff] p-6">
       <Stars />
-      <p className="text-sm font-semibold text-white">{review.user}</p>
-      <p className="text-white/30 text-xs mt-1 mb-4">{review.date}</p>
-      <h5 className="mb-2 text-base font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>{review.title}</h5>
-      <p className="text-white/50 text-xs leading-relaxed">{review.text}</p>
+      <p className="text-base font-semibold text-[#26231f]">{review.user}</p>
+      <p className="text-[#57534c] text-sm mt-1 mb-4">{review.date}</p>
+      <h5 className="mb-2 text-base font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>{review.title}</h5>
+      <p className="text-[#57534c] text-sm leading-relaxed">{review.text}</p>
     </div>
   );
 }

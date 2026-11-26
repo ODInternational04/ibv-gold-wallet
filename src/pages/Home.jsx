@@ -10,7 +10,7 @@ import Footer from "../components/ibvgold/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f7f4ee] text-[#162028]">
+    <div className="min-h-screen overflow-x-hidden bg-[#ffffff] text-[#26231f]">
       <Navbar />
       <div className="pt-16 md:pt-20">
         <MarqueeBanner />

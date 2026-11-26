@@ -12,15 +12,15 @@ export default function AdminLayout() {
   const location = useLocation();
 
   return (
-    <div className="flex min-h-screen bg-[#0f1217] text-white">
+    <div className="flex min-h-screen bg-[#ffffff] text-[#26231f]">
       {/* Sidebar */}
-      <aside className="w-56 flex flex-col border-r border-white/8 bg-[#0a0c0e]">
-        <div className="px-5 py-6 border-b border-white/8">
+      <aside className="w-56 flex flex-col border-r border-[#e3e0da] bg-[#ffffff]">
+        <div className="px-5 py-6 border-b border-[#e3e0da]">
           <div className="flex items-center gap-1">
-            <span className="text-[#396978] text-xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/50 text-xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
+            <span className="text-[#57534c] text-xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-[#57534c] text-xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
           </div>
-          <p className="mt-1 text-[10px] font-bold tracking-[0.25em] text-[#396978]/70">ADMIN PORTAL</p>
+          <p className="mt-1 text-sm font-bold tracking-[0.25em] text-[#57534c]">ADMIN PORTAL</p>
         </div>
 
         <nav className="flex-1 px-3 py-4 space-y-1">
@@ -30,10 +30,10 @@ export default function AdminLayout() {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs font-bold tracking-wide transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-bold tracking-wide transition-colors ${
                   active
-                    ? 'bg-[#396978]/20 text-[#7fb7c9]'
-                    : 'text-white/40 hover:text-white/70 hover:bg-white/5'
+                    ? 'bg-[#ffffff] text-[#57534c]'
+                    : 'text-[#57534c] hover:text-[#26231f] hover:bg-[#f7f5f0]'
                 }`}
               >
                 <item.icon className="w-4 h-4" />
@@ -43,11 +43,11 @@ export default function AdminLayout() {
           })}
         </nav>
 
-        <div className="px-5 py-4 border-t border-white/8 space-y-2">
-          <p className="text-[11px] text-white/30 truncate">{user?.email}</p>
+        <div className="px-5 py-4 border-t border-[#e3e0da] space-y-2">
+          <p className="text-sm text-[#57534c] truncate">{user?.email}</p>
           <button
             onClick={() => logout()}
-            className="flex items-center gap-2 text-xs font-bold text-white/30 hover:text-red-400 transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-[#57534c] hover:text-red-700 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
             Sign Out

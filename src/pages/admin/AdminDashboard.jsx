@@ -26,32 +26,32 @@ export default function AdminDashboard() {
   }, []);
 
   const cards = [
-    { label: 'Total Submitted', value: stats.total, icon: Users, color: 'text-[#7fb7c9]', bg: 'bg-[#396978]/15' },
-    { label: 'Pending Review', value: stats.pending, icon: Clock, color: 'text-amber-400', bg: 'bg-amber-400/10' },
-    { label: 'Verified', value: stats.verified, icon: CheckCircle2, color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
-    { label: 'Rejected', value: stats.rejected, icon: XCircle, color: 'text-red-400', bg: 'bg-red-400/10' },
+    { label: 'Total Submitted', value: stats.total, icon: Users, color: 'text-[#57534c]', bg: 'bg-[#ffffff]' },
+    { label: 'Pending Review', value: stats.pending, icon: Clock, color: 'text-amber-700', bg: 'bg-amber-400/10' },
+    { label: 'Verified', value: stats.verified, icon: CheckCircle2, color: 'text-emerald-700', bg: 'bg-emerald-400/10' },
+    { label: 'Rejected', value: stats.rejected, icon: XCircle, color: 'text-red-700', bg: 'bg-red-400/10' },
   ];
 
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Admin Dashboard</h1>
-        <p className="mt-1 text-sm text-white/40">Overview of user verifications</p>
+        <h1 className="text-3xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Admin Dashboard</h1>
+        <p className="mt-1 text-base text-[#57534c]">Overview of user verifications</p>
       </div>
 
       {loading ? (
-        <div className="flex items-center gap-2 text-white/30 text-sm">
+        <div className="flex items-center gap-2 text-[#57534c] text-base">
           <RefreshCw className="w-4 h-4 animate-spin" /> Loading...
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {cards.map((card) => (
-            <div key={card.label} className="rounded-2xl border border-white/8 bg-[#141820] p-5">
+            <div key={card.label} className="rounded-2xl border border-[#e3e0da] bg-[#ffffff] p-5">
               <div className={`w-9 h-9 rounded-xl ${card.bg} flex items-center justify-center mb-4`}>
                 <card.icon className={`w-4 h-4 ${card.color}`} />
               </div>
-              <p className="text-2xl font-semibold text-white">{card.value}</p>
-              <p className="mt-1 text-xs text-white/40">{card.label}</p>
+              <p className="text-2xl font-semibold text-[#26231f]">{card.value}</p>
+              <p className="mt-1 text-sm text-[#57534c]">{card.label}</p>
             </div>
           ))}
         </div>

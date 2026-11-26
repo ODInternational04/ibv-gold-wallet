@@ -28,11 +28,11 @@ export default function GoldPriceChart({ compact = false }) {
 
   const chartContent = (
     <>
-      <div className="mb-3 border-b border-white/8 pb-3">
-        <p className="text-3xl font-semibold text-white sm:text-[2rem]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
-          {priceLoading ? <span className="text-white/40 text-2xl">Loading…</span> : <>{displayPrice} <span className="text-sm font-normal text-white/45">/oz</span></>}
+      <div className="mb-3 border-b border-[#e3e0da] pb-3">
+        <p className="text-3xl font-semibold text-[#26231f] sm:text-[2rem]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+          {priceLoading ? <span className="text-[#57534c] text-2xl">Loading…</span> : <>{displayPrice} <span className="text-base font-normal text-[#57534c]">/oz</span></>}
         </p>
-        <p className="text-white/30 text-xs mt-1">Live ZAR spot price</p>
+        <p className="text-[#57534c] text-sm mt-1">Live ZAR spot price</p>
       </div>
 
       <div className="min-h-[12rem] flex-1">
@@ -40,18 +40,18 @@ export default function GoldPriceChart({ compact = false }) {
           <AreaChart data={data} margin={{ top: 5, right: 5, bottom: 5, left: 0 }}>
             <defs>
               <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#396978" stopOpacity={0.32} />
-                <stop offset="95%" stopColor="#396978" stopOpacity={0} />
+                <stop offset="5%" stopColor="#92702b" stopOpacity={0.32} />
+                <stop offset="95%" stopColor="#92702b" stopOpacity={0} />
               </linearGradient>
             </defs>
             <XAxis dataKey="time" hide />
             <YAxis domain={["auto", "auto"]} hide />
             <Tooltip
-              contentStyle={{ background: "#162028", border: "1px solid #39697833", borderRadius: 12, color: "#fff" }}
+              contentStyle={{ background: "#ffffff", border: "1px solid #92702b33", borderRadius: 12, color: "#39352f" }}
               formatter={(v) => [`R ${v.toLocaleString()}`, "Price"]}
               labelFormatter={() => ""}
             />
-            <Area type="monotone" dataKey="price" stroke="#396978" strokeWidth={1.5} fill="url(#goldGrad)" dot={false} />
+            <Area type="monotone" dataKey="price" stroke="#92702b" strokeWidth={2.5} fill="url(#goldGrad)" dot={false} />
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -62,7 +62,7 @@ export default function GoldPriceChart({ compact = false }) {
           <button
             key={t}
             onClick={() => setRange(t)}
-            className={`flex-1 rounded-lg py-1.5 text-xs font-bold transition-colors ${range === t ? "bg-[#396978]/14 text-[#7fb7c9]" : "text-white/30 hover:text-white"}`}
+            className={`flex-1 rounded-lg py-1.5 text-sm font-bold transition-colors ${range === t ? "bg-[#ffffff] text-[#57534c]" : "text-[#57534c] hover:text-[#26231f]"}`}
           >
             {t}
           </button>
@@ -75,7 +75,7 @@ export default function GoldPriceChart({ compact = false }) {
           <button
             key={c}
             onClick={() => setCurrency(c)}
-            className={`rounded-lg px-2 py-1 text-[10px] font-bold transition-colors ${currency === c ? "bg-[#396978]/14 text-[#7fb7c9]" : "bg-white/5 text-white/40 hover:text-white"}`}
+            className={`rounded-lg px-2 py-1 text-sm font-bold transition-colors ${currency === c ? "bg-[#ffffff] text-[#57534c]" : "bg-[#f7f5f0] text-[#57534c] hover:text-[#26231f]"}`}
           >
             {c}
           </button>
@@ -84,10 +84,10 @@ export default function GoldPriceChart({ compact = false }) {
 
       {/* Buy/Sell */}
       <div className="mt-3 flex gap-2">
-        <button className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-[#2FA36B]/22 bg-[#2FA36B]/12 py-2 text-xs font-bold text-[#6dd09f] transition-colors hover:bg-[#2FA36B]/16">
+        <button className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-[#dedbd4] bg-[#edf8f1] py-2 text-sm font-bold text-[#57534c] transition-colors hover:bg-[#edf8f1]">
           Buy
         </button>
-        <button className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-white/10 bg-white/5 py-2 text-xs font-bold text-white/60 transition-colors hover:bg-white/8">
+        <button className="flex-1 flex items-center justify-center gap-1.5 rounded-xl border border-[#e3e0da] bg-[#f7f5f0] py-2 text-sm font-bold text-[#57534c] transition-colors hover:bg-[#f7f5f0]">
           Sell
         </button>
       </div>
@@ -103,7 +103,7 @@ export default function GoldPriceChart({ compact = false }) {
   }
 
   return (
-    <div className="flex min-h-[24rem] flex-col rounded-[24px] border border-[#396978]/22 bg-[#1e2c32] p-4 shadow-[0_24px_60px_rgba(30,44,50,0.25)] sm:min-h-[26rem] lg:h-full">
+    <div className="flex min-h-[24rem] flex-col rounded-[24px] border border-[#dedbd4] bg-[#ffffff] p-4 shadow-[0_24px_60px_rgba(38,35,31,0.06)] sm:min-h-[26rem] lg:h-full">
       {chartContent}
     </div>
   );

@@ -26,7 +26,7 @@ const features = [
 
 export default function SecuritySection() {
   return (
-    <section id="about" className="bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-[120px]">
+    <section id="about" className="bg-[#ffffff] px-6 py-20 md:px-10 lg:px-[120px]">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {features.map((f, i) => (
           <motion.div
@@ -42,8 +42,8 @@ export default function SecuritySection() {
               alt={f.title}
               className="w-16 h-16 mx-auto mb-5 object-contain"
             />
-            <h4 className="mb-3 text-lg font-semibold text-[#162028]">{f.title}</h4>
-            <p className="text-sm leading-relaxed text-[#66737c]">{f.desc}</p>
+            <h4 className="mb-3 text-lg font-semibold text-[#26231f]">{f.title}</h4>
+            <p className="text-base leading-relaxed text-[#57534c]">{f.desc}</p>
           </motion.div>
         ))}
       </div>
@@ -54,7 +54,7 @@ export default function SecuritySection() {
         viewport={{ once: true }}
         className="mt-16 text-center"
       >
-        <p className="text-lg font-medium tracking-wide text-[#66737c]">
+        <p className="text-lg font-medium tracking-wide text-[#57534c]">
           The highest security standards. 100% physically backed.
         </p>
       </motion.div>

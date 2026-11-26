@@ -88,7 +88,7 @@ export default function AdminOverview() {
                 <div className="admin-card" key={label}>
                   <div className="admin-card-label">
                     {label}
-                    <Icon size={19} color="#c9a84c" />
+                    <Icon size={19} color="#92702b" />
                   </div>
                   <p className="admin-card-value">{value}</p>
                   <p className="admin-card-note">{note}</p>
@@ -110,27 +110,27 @@ export default function AdminOverview() {
                         tickFormatter={(d) => d.slice(5)}
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: "#93a4b0", fontSize: 12 }}
+                        tick={{ fill: "#645f57", fontSize: 14 }}
                       />
                       <YAxis
                         allowDecimals={false}
                         axisLine={false}
                         tickLine={false}
-                        tick={{ fill: "#93a4b0", fontSize: 12 }}
+                        tick={{ fill: "#645f57", fontSize: 14 }}
                         width={30}
                       />
                       <Tooltip
                         contentStyle={{
-                          background: "#14222d",
-                          border: "1px solid #385260",
+                          background: "#ffffff",
+                          border: "1px solid #dedbd4",
                           borderRadius: 8,
                         }}
-                        labelStyle={{ color: "#edf3f6" }}
+                        labelStyle={{ color: "#39352f" }}
                       />
                       <Bar
                         dataKey="requests"
                         name="Requests"
-                        fill="#77afc0"
+                        fill="#92702b"
                         radius={[5, 5, 0, 0]}
                         maxBarSize={42}
                       />

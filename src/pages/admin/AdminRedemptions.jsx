@@ -103,12 +103,12 @@ function RedemptionValue({ product, onSaved }) {
             </button>
           </div>
           {error && (
-            <p role="alert" className="text-sm text-red-300 mt-2">
+            <p role="alert" className="text-base text-red-700 mt-2">
               {error.message}
             </p>
           )}
           {saved && (
-            <p role="status" className="text-sm text-emerald-300 mt-2">
+            <p role="status" className="text-base text-emerald-700 mt-2">
               Saved to the customer vault.
             </p>
           )}

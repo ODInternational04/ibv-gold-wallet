@@ -3,31 +3,31 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative flex min-h-[calc(100vh-8rem)] flex-col items-center overflow-hidden bg-[#f7f4ee] px-6 pb-16 pt-12 md:px-10 md:pt-20 lg:flex-row lg:px-[120px]">
+    <section className="relative flex min-h-[calc(100vh-8rem)] flex-col items-center overflow-hidden bg-[#ffffff] px-6 pb-16 pt-12 md:px-10 md:pt-20 lg:flex-row lg:px-[120px]">
       {/* Decorative gold dots */}
       <div className="absolute top-32 right-[45%] hidden lg:flex gap-2">
         <div className="flex flex-col gap-2">
-          <div className="w-2 h-2 bg-[#C9A84C]" />
-          <div className="w-2 h-2 bg-[#C9A84C]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
         </div>
         <div className="flex flex-col gap-2 mt-3">
-          <div className="w-2 h-2 bg-[#C9A84C]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
         </div>
       </div>
       <div className="absolute top-40 right-10 hidden lg:flex gap-2">
-        <div className="w-2 h-2 bg-[#C9A84C]" />
+        <div className="w-2 h-2 bg-[#faf3e3]" />
         <div className="flex flex-col gap-2">
-          <div className="w-2 h-2 bg-[#C9A84C]" />
-          <div className="w-2 h-2 bg-[#C9A84C]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
         </div>
       </div>
       <div className="absolute bottom-20 right-[35%] hidden lg:flex gap-2">
         <div className="flex flex-col gap-2">
-          <div className="w-2 h-2 bg-[#C9A84C]" />
-          <div className="w-2 h-2 bg-[#C9A84C]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
         </div>
         <div className="mt-3">
-          <div className="w-2 h-2 bg-[#C9A84C]" />
+          <div className="w-2 h-2 bg-[#faf3e3]" />
         </div>
       </div>
 
@@ -38,18 +38,18 @@ export default function HeroSection() {
         transition={{ duration: 0.8 }}
         className="z-10 w-full lg:w-1/2 text-center lg:text-left"
       >
-        <h1 className="text-5xl font-semibold leading-tight text-[#162028] lg:text-6xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+        <h1 className="text-5xl font-semibold leading-tight text-[#26231f] lg:text-6xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
           Real gold.
           <br />
-          <span className="text-[#C9A84C]">In your pocket.</span>
+          <span className="text-[#785616]">In your pocket.</span>
         </h1>
 
-        <p className="mt-6 max-w-lg mx-auto text-lg font-medium leading-relaxed text-[#44515a] lg:mx-0 lg:text-xl">
+        <p className="mt-6 max-w-lg mx-auto text-lg font-medium leading-relaxed text-[#57534c] lg:mx-0 lg:text-xl">
           A gold bullion-backed account for an inflation-free financial life. Buy, sell, upload, or borrow against real gold.
         </p>
 
         <div className="mt-10 max-w-md mx-auto lg:mx-0">
-          <p className="text-[#5A5C63] text-base lg:text-lg">Secured by</p>
+          <p className="text-[#57534c] text-base lg:text-lg">Secured by</p>
           <div className="mt-3 mb-4">
             <img
               src="/ibv-gold-logo.png"
@@ -57,7 +57,7 @@ export default function HeroSection() {
               className="h-16 mx-auto lg:mx-0"
             />
           </div>
-          <p className="text-[#5A5C63] text-base lg:text-lg">
+          <p className="text-[#57534c] text-base lg:text-lg">
             Your gold is securely stored & accounted for by world-class, trusted institutions.
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function HeroSection() {
         <div className="mt-12">
           <a
             href="/registration"
-            className="inline-block border-2 border-[#396978] px-10 py-3.5 text-sm font-bold tracking-widest text-[#7fb7c9] transition-all duration-300 hover:bg-[#396978] hover:text-white"
+            className="inline-block rounded-xl border-2 border-[#2d2a26] bg-[#2d2a26] px-10 py-3.5 text-base font-bold tracking-widest text-white transition-all duration-300 hover:bg-[#454037]"
           >
             GET STARTED
           </a>

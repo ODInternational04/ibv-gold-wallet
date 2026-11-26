@@ -6,11 +6,11 @@ import {
 import { supabase } from '@/utils/supabase/client';
 
 const STATUS_STYLES = {
-  not_submitted: { label: 'Not Submitted', color: 'text-white/30', bg: 'bg-white/5' },
-  pending:       { label: 'Pending',        color: 'text-amber-400',  bg: 'bg-amber-400/10' },
-  under_review:  { label: 'Under Review',   color: 'text-blue-400',   bg: 'bg-blue-400/10' },
-  verified:      { label: 'Verified',       color: 'text-emerald-400', bg: 'bg-emerald-400/10' },
-  rejected:      { label: 'Rejected',       color: 'text-red-400',    bg: 'bg-red-400/10' },
+  not_submitted: { label: 'Not Submitted', color: 'text-[#57534c]', bg: 'bg-[#f7f5f0]' },
+  pending:       { label: 'Pending',        color: 'text-amber-700',  bg: 'bg-amber-400/10' },
+  under_review:  { label: 'Under Review',   color: 'text-amber-800',   bg: 'bg-amber-50' },
+  verified:      { label: 'Verified',       color: 'text-emerald-700', bg: 'bg-emerald-400/10' },
+  rejected:      { label: 'Rejected',       color: 'text-red-700',    bg: 'bg-red-400/10' },
 };
 
 const FILTERS = ['all', 'pending', 'under_review', 'verified', 'rejected'];
@@ -18,7 +18,7 @@ const FILTERS = ['all', 'pending', 'under_review', 'verified', 'rejected'];
 function StatusBadge({ status }) {
   const s = STATUS_STYLES[status] ?? STATUS_STYLES.not_submitted;
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-bold ${s.bg} ${s.color}`}>
+    <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-bold ${s.bg} ${s.color}`}>
       {s.label}
     </span>
   );
@@ -28,7 +28,7 @@ function DocLink({ path, label }) {
   const [url, setUrl] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  if (!path) return <span className="text-xs text-white/20">—</span>;
+  if (!path) return <span className="text-sm text-[#57534c]">—</span>;
 
   const getUrl = async () => {
     setLoading(true);
@@ -46,7 +46,7 @@ function DocLink({ path, label }) {
     <button
       onClick={getUrl}
       disabled={loading}
-      className="flex items-center gap-1.5 text-xs text-[#7fb7c9] hover:underline disabled:opacity-50"
+      className="flex items-center gap-1.5 text-sm text-[#57534c] hover:underline disabled:opacity-50"
     >
       <FileText className="w-3.5 h-3.5" />
       {loading ? 'Loading...' : label}
@@ -79,27 +79,27 @@ function ReviewModal({ record, onClose, onUpdate }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4" onClick={onClose}>
-      <div className="w-full max-w-lg rounded-2xl border border-white/10 bg-[#141820] p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-        <h2 className="mb-1 text-2xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+      <div className="w-full max-w-lg rounded-2xl border border-[#e3e0da] bg-[#ffffff] p-6 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+        <h2 className="mb-1 text-2xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
           Review Verification
         </h2>
-        <p className="mb-5 text-sm text-white/40">{record.email}</p>
+        <p className="mb-5 text-base text-[#57534c]">{record.email}</p>
 
         <div className="mb-4 grid grid-cols-2 gap-3">
-          <div className="rounded-xl border border-white/8 bg-white/4 p-3">
-            <p className="text-[10px] tracking-widest text-white/30">RSA ID NUMBER</p>
-            <p className="mt-1 font-mono text-sm text-white">{record.id_number ?? '—'}</p>
+          <div className="rounded-xl border border-[#e3e0da] bg-[#f7f5f0] p-3">
+            <p className="text-sm tracking-widest text-[#57534c]">RSA ID NUMBER</p>
+            <p className="mt-1 font-mono text-base text-[#26231f]">{record.id_number ?? '—'}</p>
           </div>
-          <div className="rounded-xl border border-white/8 bg-white/4 p-3">
-            <p className="text-[10px] tracking-widest text-white/30">SUBMITTED</p>
-            <p className="mt-1 text-sm text-white">
+          <div className="rounded-xl border border-[#e3e0da] bg-[#f7f5f0] p-3">
+            <p className="text-sm tracking-widest text-[#57534c]">SUBMITTED</p>
+            <p className="mt-1 text-base text-[#26231f]">
               {record.submitted_at ? new Date(record.submitted_at).toLocaleDateString() : '—'}
             </p>
           </div>
         </div>
 
         <div className="mb-4 space-y-2">
-          <p className="text-[10px] tracking-widest text-white/30">DOCUMENTS</p>
+          <p className="text-sm tracking-widest text-[#57534c]">DOCUMENTS</p>
           <div className="flex gap-4">
             <DocLink path={record.id_document_url} label="ID Document" />
             <DocLink path={record.utility_bill_url} label="Utility Bill" />
@@ -107,18 +107,18 @@ function ReviewModal({ record, onClose, onUpdate }) {
         </div>
 
         <div className="mb-5">
-          <label className="mb-1.5 block text-[10px] font-bold tracking-widest text-white/30">REVIEWER NOTES (optional)</label>
+          <label className="mb-1.5 block text-sm font-bold tracking-widest text-[#57534c]">REVIEWER NOTES (optional)</label>
           <textarea
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows={3}
             placeholder="Add a note for this decision..."
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-[#396978]/40 resize-none"
+            className="w-full rounded-xl border border-[#e3e0da] bg-[#f7f5f0] px-4 py-3 text-base text-[#26231f] placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-[#a47c2e] resize-none"
           />
         </div>
 
         {error && (
-          <div className="mb-4 flex items-center gap-2 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-xs text-red-400">
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-red-400/30 bg-red-400/10 px-4 py-3 text-sm text-red-700">
             <AlertCircle className="w-4 h-4 shrink-0" /> {error}
           </div>
         )}
@@ -127,27 +127,27 @@ function ReviewModal({ record, onClose, onUpdate }) {
           <button
             onClick={() => act('rejected')}
             disabled={loading}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-red-400/30 bg-red-400/10 py-3 text-sm font-bold text-red-400 transition-colors hover:bg-red-400/20 disabled:opacity-50"
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-red-400/30 bg-red-400/10 py-3 text-base font-bold text-red-700 transition-colors hover:bg-red-400/20 disabled:opacity-50"
           >
             <XCircle className="w-4 h-4" /> Reject
           </button>
           <button
             onClick={() => act('under_review')}
             disabled={loading || record.status === 'under_review'}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-blue-400/30 bg-blue-400/10 py-3 text-sm font-bold text-blue-400 transition-colors hover:bg-blue-400/20 disabled:opacity-50"
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-amber-200 bg-amber-50 py-3 text-base font-bold text-amber-800 transition-colors hover:bg-amber-100 disabled:opacity-50"
           >
             <Clock className="w-4 h-4" /> Mark Under Review
           </button>
           <button
             onClick={() => act('verified')}
             disabled={loading}
-            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-500/20 border border-emerald-400/30 py-3 text-sm font-bold text-emerald-400 transition-colors hover:bg-emerald-500/30 disabled:opacity-50"
+            className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-500/20 border border-emerald-400/30 py-3 text-base font-bold text-emerald-700 transition-colors hover:bg-emerald-500/30 disabled:opacity-50"
           >
             <CheckCircle2 className="w-4 h-4" /> Approve
           </button>
         </div>
 
-        <button onClick={onClose} className="mt-4 w-full text-center text-xs text-white/20 hover:text-white/40">
+        <button onClick={onClose} className="mt-4 w-full text-center text-sm text-[#57534c] hover:text-[#57534c]">
           Cancel
         </button>
       </div>
@@ -193,12 +193,12 @@ export default function AdminVerifications() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Verifications</h1>
-          <p className="mt-1 text-sm text-white/40">{records.length} record{records.length !== 1 ? 's' : ''}</p>
+          <h1 className="text-3xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Verifications</h1>
+          <p className="mt-1 text-base text-[#57534c]">{records.length} record{records.length !== 1 ? 's' : ''}</p>
         </div>
         <button
           onClick={fetchRecords}
-          className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-white/50 hover:text-white transition-colors"
+          className="flex items-center gap-2 rounded-xl border border-[#e3e0da] bg-[#f7f5f0] px-4 py-2 text-sm font-bold text-[#57534c] hover:text-[#26231f] transition-colors"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
           Refresh
@@ -211,10 +211,10 @@ export default function AdminVerifications() {
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`rounded-full px-3 py-1.5 text-xs font-bold capitalize transition-colors ${
+            className={`rounded-full px-3 py-1.5 text-sm font-bold capitalize transition-colors ${
               filter === f
-                ? 'bg-[#396978]/20 text-[#7fb7c9]'
-                : 'text-white/30 hover:text-white/60 border border-white/8'
+                ? 'bg-[#ffffff] text-[#57534c]'
+                : 'text-[#57534c] hover:text-[#57534c] border border-[#e3e0da]'
             }`}
           >
             {f === 'all' ? 'All' : f.replace('_', ' ')}
@@ -223,11 +223,11 @@ export default function AdminVerifications() {
       </div>
 
       {/* Table */}
-      <div className="overflow-hidden rounded-2xl border border-white/8">
+      <div className="overflow-hidden rounded-2xl border border-[#e3e0da]">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm">
+          <table className="w-full text-base">
             <thead>
-              <tr className="border-b border-white/8 bg-[#0a0c0e]">
+              <tr className="border-b border-[#e3e0da] bg-[#ffffff]">
                 {[
                   { label: 'User ID', col: 'user_id' },
                   { label: 'ID Number', col: 'id_number' },
@@ -239,7 +239,7 @@ export default function AdminVerifications() {
                   <th
                     key={label}
                     onClick={col ? () => toggleSort(col) : undefined}
-                    className={`px-4 py-3 text-left text-[10px] font-bold tracking-widest text-white/30 ${col ? 'cursor-pointer hover:text-white/60 select-none' : ''}`}
+                    className={`px-4 py-3 text-left text-sm font-bold tracking-widest text-[#57534c] ${col ? 'cursor-pointer hover:text-[#57534c] select-none' : ''}`}
                   >
                     <span className="flex items-center gap-1">
                       {label}
@@ -252,27 +252,27 @@ export default function AdminVerifications() {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-12 text-center text-white/20 text-sm">
+                  <td colSpan={6} className="px-4 py-12 text-center text-[#57534c] text-base">
                     <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2" />
                     Loading...
                   </td>
                 </tr>
               ) : records.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="px-4 py-12 text-center text-white/20 text-sm">No records found.</td>
+                  <td colSpan={6} className="px-4 py-12 text-center text-[#57534c] text-base">No records found.</td>
                 </tr>
               ) : records.map((r) => (
-                <tr key={r.id} className="border-b border-white/5 bg-[#141820] hover:bg-white/3 transition-colors">
+                <tr key={r.id} className="border-b border-[#e3e0da] bg-[#ffffff] hover:bg-[#f7f5f0] transition-colors">
                   <td className="px-4 py-3">
-                    <span className="font-mono text-xs text-white/40">{r.user_id.slice(0, 8)}…</span>
+                    <span className="font-mono text-sm text-[#57534c]">{r.user_id.slice(0, 8)}…</span>
                   </td>
                   <td className="px-4 py-3">
-                    <span className="font-mono text-xs text-white/70">{r.id_number ?? '—'}</span>
+                    <span className="font-mono text-sm text-[#26231f]">{r.id_number ?? '—'}</span>
                   </td>
                   <td className="px-4 py-3">
                     <StatusBadge status={r.status} />
                   </td>
-                  <td className="px-4 py-3 text-xs text-white/40">
+                  <td className="px-4 py-3 text-sm text-[#57534c]">
                     {r.submitted_at ? new Date(r.submitted_at).toLocaleDateString() : '—'}
                   </td>
                   <td className="px-4 py-3">
@@ -284,7 +284,7 @@ export default function AdminVerifications() {
                   <td className="px-4 py-3">
                     <button
                       onClick={() => setSelected(r)}
-                      className="flex items-center gap-1.5 rounded-lg border border-[#396978]/30 bg-[#396978]/10 px-3 py-1.5 text-xs font-bold text-[#7fb7c9] transition-colors hover:bg-[#396978]/20"
+                      className="flex items-center gap-1.5 rounded-lg border border-[#dedbd4] bg-[#ffffff] px-3 py-1.5 text-sm font-bold text-[#57534c] transition-colors hover:bg-[#ffffff]"
                     >
                       <Eye className="w-3.5 h-3.5" />
                       Review

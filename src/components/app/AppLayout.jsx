@@ -50,18 +50,18 @@ export default function AppLayout() {
   }, [isMobile, location.pathname]);
 
   return (
-    <div className="flex min-h-screen bg-white text-[#162028] md:h-screen md:overflow-hidden">
+    <div className="flex min-h-screen bg-white text-[#26231f] md:h-screen md:overflow-hidden">
       {isMobile && mobileMenuOpen && (
         <button
           type="button"
           aria-label="Close navigation menu"
           onClick={() => setMobileMenuOpen(false)}
-          className="fixed inset-0 z-30 bg-[#162028]/22 backdrop-blur-sm"
+          className="fixed inset-0 z-30 bg-[#ffffff] backdrop-blur-sm"
         />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col border-r border-[#d9d1c4] bg-[#fbfaf7] transition-transform duration-300 md:static md:z-auto md:max-w-none md:flex-shrink-0 ${
+      <aside className={`fixed inset-y-0 left-0 z-40 flex w-72 max-w-[85vw] flex-col border-r border-[#dedbd4] bg-[#ffffff] transition-transform duration-300 md:static md:z-auto md:max-w-none md:flex-shrink-0 ${
         isMobile
           ? mobileMenuOpen
             ? "translate-x-0"
@@ -73,11 +73,11 @@ export default function AppLayout() {
         <div className="px-5 py-5">
           <Link to="/" className="flex items-center gap-0.5">
             <span
-              className="text-[#396978] font-semibold text-2xl"
+              className="text-[#57534c] font-semibold text-2xl"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >IBV</span>
             <span
-              className="text-[#22303a]/70 font-semibold text-2xl tracking-widest"
+              className="text-[#26231f] font-semibold text-2xl tracking-widest"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >&nbsp;GOLD</span>
           </Link>
@@ -95,10 +95,10 @@ export default function AppLayout() {
                     setMobileMenuOpen(false);
                   }
                 }}
-                className={`flex items-center gap-3 px-3 py-2.5 rounded text-xs font-bold tracking-wide transition-colors ${
+                className={`flex items-center gap-3 px-3 py-2.5 rounded text-sm font-bold tracking-wide transition-colors ${
                   active
-                    ? "bg-[#396978]/15 text-[#7fb7c9] border border-[#396978]/25"
-                    : "text-[#61707a] hover:text-[#22303a] hover:bg-[#efe8dc] border border-transparent"
+                    ? "bg-[#faf3e3] text-[#785616] border border-[#d8bd83]"
+                    : "text-[#57534c] hover:text-[#26231f] hover:bg-[#f7f5f0] border border-transparent"
                 }`}
               >
                 <item.icon className="w-4 h-4 flex-shrink-0" />
@@ -112,20 +112,20 @@ export default function AppLayout() {
         <div className="px-5 py-4 mt-auto space-y-3">
           <button
             onClick={() => logout()}
-            className="flex items-center gap-2 text-xs font-bold text-[#61707a] hover:text-red-500 transition-colors"
+            className="flex items-center gap-2 text-sm font-bold text-[#57534c] hover:text-red-700 transition-colors"
           >
             <LogOut className="w-3.5 h-3.5" />
             Sign Out
           </button>
-          <p className="text-[#8d979d] text-[10px]">IBV Gold 2026</p>
-          <p className="text-[#8d979d] text-[10px]">IBV Gold v7.0.9 [4da52bec]</p>
+          <p className="text-[#57534c] text-sm">IBV Gold 2026</p>
+          <p className="text-[#57534c] text-sm">IBV Gold v7.0.9 [4da52bec]</p>
         </div>
       </aside>
 
       {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col md:overflow-hidden">
         {/* Top bar */}
-        <header className="flex flex-wrap items-center gap-3 border-b border-[#d9d1c4] bg-[#fbfaf7] px-4 py-3 md:px-6 md:flex-shrink-0">
+        <header className="flex flex-wrap items-center gap-3 border-b border-[#dedbd4] bg-[#ffffff] px-4 py-3 md:px-6 md:flex-shrink-0">
           <button
             type="button"
             onClick={() => {
@@ -136,7 +136,7 @@ export default function AppLayout() {
 
               setCollapsed((value) => !value);
             }}
-            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#396978]/20 bg-[#396978]/12 text-[#7fb7c9] transition-colors hover:bg-[#396978]/18"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-[#dedbd4] bg-[#ffffff] text-[#57534c] transition-colors hover:bg-[#ffffff]"
           >
             {isMobile ? (
               mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />
@@ -148,31 +148,31 @@ export default function AppLayout() {
           </button>
 
           <div className="flex min-w-0 flex-1 items-center justify-between gap-3 sm:ml-auto sm:justify-end sm:gap-4">
-            <span className="truncate text-xs font-medium text-[#7fb7c9]/75 sm:text-sm">
+            <span className="truncate text-sm font-medium text-[#57534c] sm:text-base">
               Hi {user?.email?.split('@')[0] ?? 'there'}. Welcome back!
             </span>
             <div className="relative" ref={userMenuRef}>
               <button
                 onClick={() => setUserMenuOpen((o) => !o)}
-                className="flex cursor-pointer items-center gap-2 rounded border border-[#d9d1c4] px-2.5 py-1.5 hover:border-[#c2b6a0] sm:px-3"
+                className="flex cursor-pointer items-center gap-2 rounded border border-[#dedbd4] px-2.5 py-1.5 hover:border-[#dedbd4] sm:px-3"
               >
-                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#e8e0d5]">
-                  <User className="w-3.5 h-3.5 text-[#55626c]" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#ffffff]">
+                  <User className="w-3.5 h-3.5 text-[#57534c]" />
                 </div>
-                <span className="max-w-24 truncate text-sm text-[#22303a] sm:max-w-none">
+                <span className="max-w-24 truncate text-base text-[#26231f] sm:max-w-none">
                   {user?.email?.split('@')[0] ?? 'Account'}
                 </span>
-                <ChevronDown className="w-3.5 h-3.5 text-[#7a848a]" />
+                <ChevronDown className="w-3.5 h-3.5 text-[#57534c]" />
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-1 w-48 rounded-lg border border-[#d9d1c4] bg-white py-1 shadow-lg z-50">
-                  <div className="border-b border-[#d9d1c4] px-4 py-2">
-                    <p className="truncate text-xs text-[#8d979d]">{user?.email}</p>
+                <div className="absolute right-0 top-full mt-1 w-48 rounded-lg border border-[#dedbd4] bg-white py-1 shadow-lg z-50">
+                  <div className="border-b border-[#dedbd4] px-4 py-2">
+                    <p className="truncate text-sm text-[#57534c]">{user?.email}</p>
                   </div>
                   <button
                     onClick={() => logout()}
-                    className="flex w-full items-center gap-2 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"
+                    className="flex w-full items-center gap-2 px-4 py-2.5 text-base text-red-700 hover:bg-red-50 transition-colors"
                   >
                     <LogOut className="w-4 h-4" />
                     Sign Out
@@ -187,27 +187,27 @@ export default function AppLayout() {
         {!verificationLoading && !isVerified && (
           isPending ? (
             <div className="flex items-center gap-3 border-b border-amber-200 bg-amber-50 px-4 py-2.5 md:px-6">
-              <Clock className="w-4 h-4 shrink-0 text-amber-500" />
-              <p className="text-xs text-amber-700">
+              <Clock className="w-4 h-4 shrink-0 text-amber-700" />
+              <p className="text-sm text-amber-700">
                 <span className="font-bold">Verification under review.</span> We'll notify you once your documents are approved.
               </p>
             </div>
           ) : (
             <Link
               to="/registration"
-              className="flex items-center gap-3 border-b border-[#396978]/20 bg-[#396978]/10 px-4 py-2.5 transition-colors hover:bg-[#396978]/15 md:px-6"
+              className="flex items-center gap-3 border-b border-[#dedbd4] bg-[#ffffff] px-4 py-2.5 transition-colors hover:bg-[#ffffff] md:px-6"
             >
-              <ShieldAlert className="w-4 h-4 shrink-0 text-[#7fb7c9]" />
-              <p className="flex-1 text-xs text-[#396978]">
+              <ShieldAlert className="w-4 h-4 shrink-0 text-[#57534c]" />
+              <p className="flex-1 text-sm text-[#57534c]">
                 <span className="font-bold">Verify your profile to start transacting.</span> Upload your ID and utility bill to unlock buying.
               </p>
-              <ChevronRight className="w-3.5 h-3.5 text-[#7fb7c9]/60" />
+              <ChevronRight className="w-3.5 h-3.5 text-[#57534c]" />
             </Link>
           )
         )}
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto bg-[#f7f4ee] p-4 md:p-6">
+        <main className="flex-1 overflow-auto bg-[#ffffff] p-4 md:p-6">
           <Outlet />
         </main>
       </div>

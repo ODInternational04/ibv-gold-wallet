@@ -54,21 +54,21 @@ const redemptionHistory = [
 const statusConfig = {
   PENDING: {
     label: "Pending",
-    className: "bg-amber-950 text-amber-400 border border-amber-800/40",
+    className: "bg-amber-50 text-amber-700 border border-amber-800/40",
     icon: Clock,
     dot: "bg-amber-400",
     description: "Awaiting balance validation and vault release approval.",
   },
   APPROVED: {
     label: "Approved",
-    className: "bg-sky-950 text-sky-300 border border-sky-800/40",
+    className: "bg-sky-50 text-sky-700 border border-sky-800/40",
     icon: CheckCircle2,
     dot: "bg-sky-400",
     description: "Vault release approved. Preparing for dispatch.",
   },
   DELIVERED: {
     label: "Delivered",
-    className: "bg-emerald-950 text-emerald-400 border border-emerald-800/40",
+    className: "bg-emerald-50 text-emerald-700 border border-emerald-800/40",
     icon: Truck,
     dot: "bg-emerald-400",
     description: "Physical stock delivered successfully.",
@@ -82,21 +82,21 @@ function BalanceDialog() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#396978]/25 bg-[#396978]/10 px-4 py-3 text-sm font-medium text-[#7fb7c9] transition-all hover:border-[#396978]/45 hover:bg-[#396978]/14"
+        className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-[#dedbd4] bg-[#ffffff] px-4 py-3 text-base font-medium text-[#57534c] transition-all hover:border-[#dedbd4] hover:bg-[#ffffff]"
       >
         <Wallet className="h-4 w-4" />
         View balance
       </button>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-xl border border-[#396978]/30 bg-[linear-gradient(160deg,#24404b_0%,#1d3039_55%,#18232b_100%)] p-0 text-white shadow-[0_28px_80px_rgba(32,63,74,0.32)]">
-          <DialogHeader className="border-b border-[#7fb7c9]/14 px-6 py-5 text-left">
+        <DialogContent className="max-w-xl border border-[#dedbd4] bg-white p-0 text-[#26231f] shadow-[0_28px_80px_rgba(38,35,31,0.06)]">
+          <DialogHeader className="border-b border-[#dedbd4] px-6 py-5 text-left">
             <DialogTitle
-              className="text-2xl font-semibold text-white"
+              className="text-2xl font-semibold text-[#26231f]"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >
               Balance Summary
             </DialogTitle>
-            <DialogDescription className="text-[#d6e7ed]/72">
+            <DialogDescription className="text-[#57534c]">
               Your current redeemable position and vault settlement details.
             </DialogDescription>
           </DialogHeader>
@@ -109,13 +109,13 @@ function BalanceDialog() {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="rounded-xl border border-[#7fb7c9]/16 bg-[#7fb7c9]/10 p-4 backdrop-blur-sm"
+                  className="rounded-xl border border-[#dedbd4] bg-[#ffffff] p-4 backdrop-blur-sm"
                 >
-                  <p className="text-[10px] tracking-[0.18em] text-[#d4e6ed]/62">
+                  <p className="text-sm tracking-[0.18em] text-[#57534c]">
                     {item.label.toUpperCase()}
                   </p>
                   <p
-                    className="mt-2 text-2xl font-semibold text-white"
+                    className="mt-2 text-2xl font-semibold text-[#26231f]"
                     style={{
                       fontFamily: "'Cormorant Garamond', Georgia, serif",
                     }}
@@ -125,16 +125,16 @@ function BalanceDialog() {
                 </div>
               ))}
             </div>
-            <div className="rounded-xl border border-[#7fb7c9]/16 bg-[#396978]/16 p-4">
+            <div className="rounded-xl border border-[#dedbd4] bg-[#ffffff] p-4">
               <div className="flex items-start gap-3">
-                <div className="rounded-full bg-[#7fb7c9]/14 p-2">
-                  <ShieldCheck className="h-4 w-4 text-[#7fb7c9]" />
+                <div className="rounded-full bg-[#ffffff] p-2">
+                  <ShieldCheck className="h-4 w-4 text-[#57534c]" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-white">
+                  <p className="text-base font-semibold text-[#26231f]">
                     Redemption rules
                   </p>
-                  <p className="mt-1 text-sm leading-6 text-[#d6e7ed]/72">
+                  <p className="mt-1 text-base leading-6 text-[#57534c]">
                     Physical redemption uses available wallet balance, then
                     applies fabrication and delivery fees before the request is
                     released from vault stock.
@@ -142,7 +142,7 @@ function BalanceDialog() {
                 </div>
               </div>
             </div>
-            <div className="space-y-2 rounded-xl border border-[#7fb7c9]/16 bg-[#7fb7c9]/10 p-4 backdrop-blur-sm">
+            <div className="space-y-2 rounded-xl border border-[#dedbd4] bg-[#ffffff] p-4 backdrop-blur-sm">
               {[
                 ["Vault allocation", "0.000,000 oz"],
                 ["Available for redemption", "0.000,000 oz"],
@@ -150,7 +150,7 @@ function BalanceDialog() {
               ].map(([k, v]) => (
                 <div
                   key={k}
-                  className="flex items-center justify-between text-sm text-[#d6e7ed]/76"
+                  className="flex items-center justify-between text-base text-[#57534c]"
                 >
                   <span>{k}</span>
                   <span>{v}</span>
@@ -168,18 +168,18 @@ function BalanceDialog() {
 function StockBadge({ stock }) {
   if (stock === "In stock")
     return (
-      <span className="shrink-0 rounded-full bg-emerald-950 px-2.5 py-0.5 text-[10px] font-medium text-emerald-400">
+      <span className="shrink-0 rounded-full bg-emerald-50 px-2.5 py-0.5 text-sm font-medium text-emerald-700">
         In stock
       </span>
     );
   if (stock === "Low stock")
     return (
-      <span className="shrink-0 rounded-full bg-amber-950 px-2.5 py-0.5 text-[10px] font-medium text-amber-400">
+      <span className="shrink-0 rounded-full bg-amber-50 px-2.5 py-0.5 text-sm font-medium text-amber-700">
         Low stock
       </span>
     );
   return (
-    <span className="shrink-0 rounded-full bg-white/8 px-2.5 py-0.5 text-[10px] font-medium text-white/50">
+    <span className="shrink-0 rounded-full bg-[#f7f5f0] px-2.5 py-0.5 text-sm font-medium text-[#57534c]">
       {stock}
     </span>
   );
@@ -237,7 +237,7 @@ export default function GoldVault() {
 
   if (catalog.isPending)
     return (
-      <div role="status" className="rounded-xl border p-8 text-[#66737c]">
+      <div role="status" className="rounded-xl border p-8 text-[#57534c]">
         Loading redemption values…
       </div>
     );
@@ -256,8 +256,8 @@ export default function GoldVault() {
   if (!selectedProduct)
     return (
       <div className="rounded-xl border p-8">
-        <h2 className="text-2xl text-[#22303a]">Redeem physical stock</h2>
-        <p className="mt-3 text-[#66737c]">
+        <h2 className="text-2xl text-[#26231f]">Redeem physical stock</h2>
+        <p className="mt-3 text-[#57534c]">
           No products are currently available for redemption. Please check back
           once redemption values are published.
         </p>
@@ -268,45 +268,44 @@ export default function GoldVault() {
     <div className="flex flex-col gap-5 min-[900px]:flex-row">
       {/* ── Left ─────────────────────────────────────── */}
       <div className="flex-1 space-y-5">
-        <div className="overflow-hidden rounded-[28px] border border-[#396978]/30 bg-[#1e2c32] shadow-[0_26px_70px_rgba(30,44,50,0.22)]">
+        <div className="overflow-hidden rounded-[28px] border border-[#dedbd4] bg-[#ffffff] shadow-[0_26px_70px_rgba(38,35,31,0.06)]">
           {/* Header */}
           <div
             className="relative overflow-hidden px-5 py-7 sm:px-7"
             style={{
-              background:
-                "linear-gradient(135deg, #1a3645 0%, #162c38 58%, #101e28 100%)",
+              background: "linear-gradient(135deg, #ffffff 0%, #faf8f3 100%)",
             }}
           >
             <div
               className="pointer-events-none absolute inset-0 opacity-[0.035]"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(45deg, #396978 0, #396978 1px, transparent 0, transparent 50%)",
+                  "repeating-linear-gradient(45deg, #92702b 0, #92702b 1px, transparent 0, transparent 50%)",
                 backgroundSize: "20px 20px",
               }}
             />
             <div className="relative flex flex-col gap-4">
               <div className="flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-[#C9A84C]/12 px-2 py-0.5 text-[10px] font-semibold tracking-[0.22em] text-[#C9A84C]">
+                  <span className="rounded bg-[#faf3e3] px-2 py-0.5 text-sm font-semibold tracking-[0.22em] text-[#785616]">
                     AU
                   </span>
-                  <Scale className="h-3.5 w-3.5 text-[#7fb7c9]/60" />
-                  <span className="text-[10px] font-bold tracking-[0.3em] text-white/35">
+                  <Scale className="h-3.5 w-3.5 text-[#57534c]" />
+                  <span className="text-sm font-bold tracking-[0.3em] text-[#57534c]">
                     REDEEM
                   </span>
                 </div>
                 <BalanceDialog />
               </div>
               <h2
-                className="text-3xl font-semibold leading-[1.2] text-white"
+                className="text-3xl font-semibold leading-[1.2] text-[#26231f]"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 Redeem physical stock
                 <br />
-                <em className="not-italic text-[#C9A84C]">from your balance</em>
+                <em className="not-italic text-[#785616]">from your balance</em>
               </h2>
-              <p className="text-sm leading-7 text-white/40">
+              <p className="text-base leading-7 text-[#57534c]">
                 Use your vaulted balance to request bars or Krugerrands for
                 physical delivery. Balance details remain available at any time.
               </p>
@@ -321,11 +320,11 @@ export default function GoldVault() {
                 onClick={() => setSelectedProductId(product.id)}
                 className={`overflow-hidden rounded-[22px] border text-left transition-all duration-200 ${
                   selectedProduct.id === product.id
-                    ? "border-[#396978]/35 bg-[#1b3545] shadow-[0_12px_36px_rgba(57,105,120,0.18)]"
-                    : "border-[#2a4050] bg-[#1a2e3c] hover:border-[#396978]/40 hover:bg-[#1e3448]"
+                    ? "border-[#b48a3c] bg-[#fffaf0] shadow-[0_12px_36px_rgba(38,35,31,0.06)]"
+                    : "border-[#dedbd4] bg-[#ffffff] hover:border-[#dedbd4] hover:bg-[#ffffff]"
                 }`}
               >
-                <div className="relative aspect-[16/9] overflow-hidden rounded-t-[22px] border-b border-[#e8e8e8] bg-white p-4">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-t-[22px] border-b border-[#dedbd4] bg-white p-4">
                   <img
                     src={product.image}
                     alt={product.name}
@@ -338,29 +337,29 @@ export default function GoldVault() {
                 <div className="space-y-3 p-4">
                   <div>
                     <p
-                      className="text-base font-semibold text-white"
+                      className="text-base font-semibold text-[#26231f]"
                       style={{
                         fontFamily: "'Cormorant Garamond', Georgia, serif",
                       }}
                     >
                       {product.name}
                     </p>
-                    <p className="mt-0.5 text-[11px] tracking-wide text-white/35">
+                    <p className="mt-0.5 text-sm tracking-wide text-[#57534c]">
                       {product.type} · {product.weight}
                     </p>
                   </div>
                   <p
-                    className="text-xl font-semibold text-white"
+                    className="text-xl font-semibold text-[#26231f]"
                     style={{
                       fontFamily: "'Cormorant Garamond', Georgia, serif",
                     }}
                   >
                     {product.value}
                   </p>
-                  <div className="flex items-center justify-between text-xs text-white/35">
+                  <div className="flex items-center justify-between text-sm text-[#57534c]">
                     <span>{product.fee}</span>
                     <span
-                      className={`flex items-center gap-1 transition-colors ${selectedProduct.id === product.id ? "text-[#C9A84C]" : "text-white/25"}`}
+                      className={`flex items-center gap-1 transition-colors ${selectedProduct.id === product.id ? "text-[#785616]" : "text-[#57534c]"}`}
                     >
                       Select <ChevronRight className="h-3.5 w-3.5" />
                     </span>
@@ -376,13 +375,13 @@ export default function GoldVault() {
       <div className="w-full min-[900px]:w-72 min-[900px]:flex-shrink-0 min-[900px]:sticky min-[900px]:top-4 min-[900px]:self-start">
         <div className="space-y-5">
           {/* Selected panel */}
-          <div className="overflow-hidden rounded-[28px] border border-[#396978]/30 bg-[#1e2c32] shadow-[0_24px_60px_rgba(30,44,50,0.20)]">
-            <div className="border-b border-[#396978]/10 px-5 py-4">
-              <p className="text-[10px] font-semibold tracking-[0.28em] text-[#7fb7c9]/55">
+          <div className="overflow-hidden rounded-[28px] border border-[#dedbd4] bg-[#ffffff] shadow-[0_24px_60px_rgba(38,35,31,0.06)]">
+            <div className="border-b border-[#dedbd4] px-5 py-4">
+              <p className="text-sm font-semibold tracking-[0.28em] text-[#57534c]">
                 SELECTED REDEMPTION
               </p>
               <h3
-                className="mt-2 text-3xl font-semibold text-white"
+                className="mt-2 text-3xl font-semibold text-[#26231f]"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 {selectedProduct.name}
@@ -390,7 +389,7 @@ export default function GoldVault() {
             </div>
 
             <div className="space-y-4 px-5 py-5">
-              <div className="rounded-[22px] border border-[#e8e8e8] bg-white p-4">
+              <div className="rounded-[22px] border border-[#dedbd4] bg-white p-4">
                 <img
                   src={selectedProduct.image}
                   alt={selectedProduct.name}
@@ -399,43 +398,43 @@ export default function GoldVault() {
               </div>
 
               <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl border border-white/6 bg-white/4 p-3">
-                  <p className="text-[10px] tracking-[0.18em] text-white/30">
+                <div className="rounded-xl border border-[#e3e0da] bg-[#f7f5f0] p-3">
+                  <p className="text-sm tracking-[0.18em] text-[#57534c]">
                     WEIGHT
                   </p>
-                  <p className="mt-1.5 text-base font-medium text-white">
+                  <p className="mt-1.5 text-base font-medium text-[#26231f]">
                     {selectedProduct.weight}
                   </p>
                 </div>
-                <div className="rounded-xl border border-white/6 bg-white/4 p-3">
-                  <p className="text-[10px] tracking-[0.18em] text-white/30">
+                <div className="rounded-xl border border-[#e3e0da] bg-[#f7f5f0] p-3">
+                  <p className="text-sm tracking-[0.18em] text-[#57534c]">
                     AVAILABILITY
                   </p>
-                  <p className="mt-1.5 text-base font-medium text-white">
+                  <p className="mt-1.5 text-base font-medium text-[#26231f]">
                     {selectedProduct.stock}
                   </p>
                 </div>
               </div>
 
-              <div className="rounded-xl border border-[#C9A84C]/15 bg-[#C9A84C]/6 p-4">
-                <p className="text-[10px] tracking-[0.22em] text-[#C9A84C]/55">
+              <div className="rounded-xl border border-[#dedbd4] bg-[#faf3e3] p-4">
+                <p className="text-sm tracking-[0.22em] text-[#785616]">
                   REDEMPTION VALUE
                 </p>
                 <p
-                  className="mt-1 text-3xl font-semibold text-white"
+                  className="mt-1 text-3xl font-semibold text-[#26231f]"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   {selectedProduct.value}
                 </p>
-                <p className="mt-2 text-xs leading-5 text-white/35">
+                <p className="mt-2 text-sm leading-5 text-[#57534c]">
                   {selectedProduct.fee}. Balance validated before vault release
                   is issued.
                 </p>
               </div>
 
-              <div className="flex items-start gap-3 rounded-xl border border-white/6 bg-white/4 p-4">
-                <PackageCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#C9A84C]/60" />
-                <p className="text-xs leading-6 text-white/40">
+              <div className="flex items-start gap-3 rounded-xl border border-[#e3e0da] bg-[#f7f5f0] p-4">
+                <PackageCheck className="mt-0.5 h-4 w-4 shrink-0 text-[#785616]" />
+                <p className="text-sm leading-6 text-[#57534c]">
                   Choose a product, confirm your balance, and submit a delivery
                   request for physical stock from vault inventory.
                 </p>
@@ -444,13 +443,13 @@ export default function GoldVault() {
               {/* CTA — opens confirmation modal */}
               <button
                 onClick={() => setConfirmOpen(true)}
-                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#2FA36B] px-6 py-4 text-sm font-semibold text-white transition-all hover:bg-[#258a59] active:scale-[0.98]"
+                className="group flex w-full items-center justify-center gap-2 rounded-xl bg-[#21734e] px-6 py-4 text-base font-semibold text-white transition-all hover:bg-[#21734e] active:scale-[0.98]"
               >
                 Redeem {selectedProduct.name}
                 <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </button>
 
-              <p className="text-center text-[11px] leading-5 text-white/22">
+              <p className="text-center text-sm leading-5 text-[#57534c]">
                 Confirmation will check your available wallet balance before
                 releasing stock.
               </p>
@@ -458,18 +457,18 @@ export default function GoldVault() {
           </div>
 
           {/* Redemption history */}
-          <div className="overflow-hidden rounded-[22px] border border-[#2a4050] bg-[#1a2c38]">
-            <div className="flex items-center justify-between border-b border-white/6 px-5 py-4">
+          <div className="overflow-hidden rounded-[22px] border border-[#dedbd4] bg-[#ffffff]">
+            <div className="flex items-center justify-between border-b border-[#e3e0da] px-5 py-4">
               <h3
-                className="text-base font-semibold text-white/75"
+                className="text-base font-semibold text-[#26231f]"
                 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
               >
                 Redemption History
               </h3>
-              <button className="flex items-center gap-1.5 text-white/30 transition-colors hover:text-white/55">
-                <span className="text-[11px]">export CSV</span>
-                <div className="flex h-6 w-6 items-center justify-center rounded bg-[#C9A84C]/12">
-                  <Mail className="h-3 w-3 text-[#C9A84C]" />
+              <button className="flex items-center gap-1.5 text-[#57534c] transition-colors hover:text-[#57534c]">
+                <span className="text-sm">export CSV</span>
+                <div className="flex h-6 w-6 items-center justify-center rounded bg-[#faf3e3]">
+                  <Mail className="h-3 w-3 text-[#785616]" />
                 </div>
               </button>
             </div>
@@ -482,7 +481,7 @@ export default function GoldVault() {
                     key={entry.id}
                     className="flex items-start gap-3 px-5 py-4"
                   >
-                    <div className="mt-0.5 h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-[#d7c79d]/30 bg-[radial-gradient(circle_at_top,_rgba(255,246,225,0.92),_rgba(235,216,170,0.85)_44%,_rgba(113,84,31,0.24)_100%)] p-1">
+                    <div className="mt-0.5 h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-[#dedbd4] bg-white p-1">
                       <img
                         src={entry.image}
                         alt=""
@@ -491,11 +490,11 @@ export default function GoldVault() {
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
-                        <p className="truncate text-sm font-medium text-white">
+                        <p className="truncate text-base font-medium text-[#26231f]">
                           {entry.product}
                         </p>
                         <span
-                          className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-semibold ${cfg.className}`}
+                          className={`shrink-0 inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-sm font-semibold ${cfg.className}`}
                         >
                           <span
                             className={`h-1.5 w-1.5 rounded-full ${cfg.dot}`}
@@ -503,12 +502,12 @@ export default function GoldVault() {
                           {cfg.label}
                         </span>
                       </div>
-                      <div className="mt-1 flex items-center gap-2 text-[11px] text-white/30">
+                      <div className="mt-1 flex items-center gap-2 text-sm text-[#57534c]">
                         <span>{entry.id}</span>
                         <span>·</span>
                         <span>{entry.date}</span>
                       </div>
-                      <p className="mt-1 text-xs text-white/40">
+                      <p className="mt-1 text-sm text-[#57534c]">
                         {cfg.description}
                       </p>
                     </div>
@@ -517,10 +516,10 @@ export default function GoldVault() {
               })}
             </div>
 
-            <div className="border-t border-white/5 px-5 py-3">
+            <div className="border-t border-[#e3e0da] px-5 py-3">
               <div className="flex items-start gap-2">
-                <Box className="mt-0.5 h-3.5 w-3.5 shrink-0 text-white/20" />
-                <p className="text-[11px] leading-5 text-white/28">
+                <Box className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#57534c]" />
+                <p className="text-sm leading-5 text-[#57534c]">
                   Typical delivery: 3–7 business days after vault release
                   approval.
                 </p>
@@ -532,20 +531,20 @@ export default function GoldVault() {
 
       {/* ── Confirmation Modal ────────────────────────── */}
       <Dialog open={confirmOpen} onOpenChange={setConfirmOpen}>
-        <DialogContent className="max-w-md border border-[#396978]/30 bg-[linear-gradient(160deg,#24404b_0%,#1d3039_58%,#18232b_100%)] p-0 text-white shadow-[0_28px_80px_rgba(32,63,74,0.32)]">
+        <DialogContent className="max-w-md border border-[#dedbd4] bg-white p-0 text-[#26231f] shadow-[0_28px_80px_rgba(38,35,31,0.06)]">
           {submitted ? (
             <div className="flex flex-col items-center gap-4 px-8 py-14">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-900/40 ring-1 ring-emerald-700/30">
-                <CheckCircle2 className="h-7 w-7 text-emerald-400" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-50 ring-1 ring-emerald-700/30">
+                <CheckCircle2 className="h-7 w-7 text-emerald-700" />
               </div>
               <div className="text-center">
                 <p
-                  className="text-2xl font-semibold text-white"
+                  className="text-2xl font-semibold text-[#26231f]"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   Request submitted
                 </p>
-                <p className="mt-2 text-sm leading-6 text-[#d6e7ed]/72">
+                <p className="mt-2 text-base leading-6 text-[#57534c]">
                   Your redemption request is pending balance validation and
                   vault release.
                 </p>
@@ -553,22 +552,22 @@ export default function GoldVault() {
             </div>
           ) : (
             <>
-              <DialogHeader className="border-b border-[#7fb7c9]/14 px-6 py-5 text-left">
+              <DialogHeader className="border-b border-[#dedbd4] px-6 py-5 text-left">
                 <DialogTitle
-                  className="text-2xl font-semibold text-white"
+                  className="text-2xl font-semibold text-[#26231f]"
                   style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
                 >
                   Confirm Redemption
                 </DialogTitle>
-                <DialogDescription className="text-[#d6e7ed]/72">
+                <DialogDescription className="text-[#57534c]">
                   Review details before submitting your physical stock request.
                 </DialogDescription>
               </DialogHeader>
 
               <div className="space-y-5 px-6 py-5">
                 {/* Product */}
-                <div className="flex items-center gap-4 rounded-xl border border-[#7fb7c9]/16 bg-[#7fb7c9]/10 p-4 backdrop-blur-sm">
-                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-[#d7c79d]/30 bg-[radial-gradient(circle_at_top,_rgba(255,246,225,0.92),_rgba(235,216,170,0.85)_44%,_rgba(113,84,31,0.24)_100%)] p-1.5">
+                <div className="flex items-center gap-4 rounded-xl border border-[#dedbd4] bg-[#ffffff] p-4 backdrop-blur-sm">
+                  <div className="h-16 w-16 shrink-0 overflow-hidden rounded-lg border border-[#dedbd4] bg-white p-1.5">
                     <img
                       src={selectedProduct.image}
                       alt={selectedProduct.name}
@@ -577,40 +576,40 @@ export default function GoldVault() {
                   </div>
                   <div>
                     <p
-                      className="text-xl font-semibold text-white"
+                      className="text-xl font-semibold text-[#26231f]"
                       style={{
                         fontFamily: "'Cormorant Garamond', Georgia, serif",
                       }}
                     >
                       {selectedProduct.name}
                     </p>
-                    <p className="text-xs text-[#d6e7ed]/68">
+                    <p className="text-sm text-[#57534c]">
                       {selectedProduct.type} · {selectedProduct.weight}
                     </p>
                   </div>
                 </div>
 
                 {/* Fee breakdown */}
-                <div className="overflow-hidden rounded-xl border border-[#7fb7c9]/16">
-                  <div className="flex items-center justify-between bg-[#7fb7c9]/10 px-4 py-3 text-sm">
-                    <span className="text-[#d6e7ed]/76">Redemption value</span>
-                    <span className="font-medium text-white">
+                <div className="overflow-hidden rounded-xl border border-[#dedbd4]">
+                  <div className="flex items-center justify-between bg-[#ffffff] px-4 py-3 text-base">
+                    <span className="text-[#57534c]">Redemption value</span>
+                    <span className="font-medium text-[#26231f]">
                       {selectedProduct.value}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-t border-[#7fb7c9]/14 bg-[#7fb7c9]/10 px-4 py-3 text-sm">
-                    <span className="text-[#d6e7ed]/76">
+                  <div className="flex items-center justify-between border-t border-[#dedbd4] bg-[#ffffff] px-4 py-3 text-base">
+                    <span className="text-[#57534c]">
                       Handling &amp; delivery
                     </span>
-                    <span className="text-[#d6e7ed]/86">
+                    <span className="text-[#57534c]">
                       {selectedProduct.feeAmount}
                     </span>
                   </div>
-                  <div className="flex items-center justify-between border-t border-[#C9A84C]/20 bg-[#C9A84C]/6 px-4 py-3 text-sm">
-                    <span className="font-semibold text-[#C9A84C]">
+                  <div className="flex items-center justify-between border-t border-[#dedbd4] bg-[#faf3e3] px-4 py-3 text-base">
+                    <span className="font-semibold text-[#785616]">
                       Total deducted
                     </span>
-                    <span className="font-semibold text-white">
+                    <span className="font-semibold text-[#26231f]">
                       {selectedProduct.total}
                     </span>
                   </div>
@@ -618,7 +617,7 @@ export default function GoldVault() {
 
                 {/* Delivery address */}
                 <div>
-                  <label className="mb-2 block text-[10px] font-semibold tracking-[0.22em] text-[#d6e7ed]/62">
+                  <label className="mb-2 block text-sm font-semibold tracking-[0.22em] text-[#57534c]">
                     DELIVERY ADDRESS
                   </label>
                   <textarea
@@ -626,14 +625,14 @@ export default function GoldVault() {
                     onChange={(e) => setAddress(e.target.value)}
                     placeholder="Street address, city, postal code…"
                     rows={3}
-                    className="w-full resize-none rounded-xl border border-[#7fb7c9]/16 bg-[#7fb7c9]/10 px-4 py-3 text-sm text-white placeholder:text-[#d6e7ed]/34 outline-none transition-colors focus:border-[#7fb7c9]/34 focus:bg-[#7fb7c9]/14"
+                    className="w-full resize-none rounded-xl border border-[#dedbd4] bg-[#ffffff] px-4 py-3 text-base text-[#26231f] placeholder:text-[#57534c] outline-none transition-colors focus:border-[#dedbd4] focus:bg-[#ffffff]"
                   />
                 </div>
 
                 {/* Notice */}
-                <div className="flex items-start gap-2 rounded-xl border border-[#7fb7c9]/16 bg-[#7fb7c9]/10 px-4 py-3">
-                  <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d6e7ed]/44" />
-                  <p className="text-xs leading-5 text-[#d6e7ed]/72">
+                <div className="flex items-start gap-2 rounded-xl border border-[#dedbd4] bg-[#ffffff] px-4 py-3">
+                  <Info className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#57534c]" />
+                  <p className="text-sm leading-5 text-[#57534c]">
                     Balance will be validated before vault release is issued.
                     This action cannot be reversed once approved.
                   </p>
@@ -642,14 +641,14 @@ export default function GoldVault() {
                 {/* Actions */}
                 <div className="flex gap-3">
                   <DialogClose asChild>
-                    <button className="flex-1 rounded-xl border border-[#7fb7c9]/18 bg-[#7fb7c9]/10 py-3 text-sm font-medium text-[#d6e7ed]/82 transition-colors hover:bg-[#7fb7c9]/14">
+                    <button className="flex-1 rounded-xl border border-[#dedbd4] bg-[#ffffff] py-3 text-base font-medium text-[#57534c] transition-colors hover:bg-[#ffffff]">
                       Cancel
                     </button>
                   </DialogClose>
                   <button
                     onClick={handleConfirm}
                     disabled={!address.trim()}
-                    className="flex-1 rounded-xl bg-[#2FA36B] py-3 text-sm font-semibold text-white transition-all hover:bg-[#258a59] disabled:cursor-not-allowed disabled:opacity-35"
+                    className="flex-1 rounded-xl bg-[#21734e] py-3 text-base font-semibold text-white transition-all hover:bg-[#21734e] disabled:cursor-not-allowed disabled:opacity-35"
                   >
                     Confirm Redemption
                   </button>

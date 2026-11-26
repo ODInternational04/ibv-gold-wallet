@@ -37,38 +37,38 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-[#0a0c0e] px-6">
+    <div className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6">
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="mb-10 text-center">
           <div className="flex items-center justify-center gap-1 mb-2">
-            <span className="text-[#396978] text-3xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-white/50 text-3xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
+            <span className="text-[#57534c] text-3xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
+            <span className="text-[#57534c] text-3xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>&nbsp;GOLD</span>
           </div>
           <div className="flex items-center justify-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#396978]/70" />
-            <p className="text-[10px] font-bold tracking-[0.3em] text-[#396978]/70">ADMIN PORTAL</p>
+            <ShieldCheck className="w-3.5 h-3.5 text-[#57534c]" />
+            <p className="text-sm font-bold tracking-[0.3em] text-[#57534c]">ADMIN PORTAL</p>
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/8 bg-[#141820] p-8">
-          <h2 className="mb-6 text-2xl font-semibold text-white" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h2>
+        <div className="rounded-2xl border border-[#e3e0da] bg-[#ffffff] p-8">
+          <h2 className="mb-6 text-2xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-[10px] font-bold tracking-widest text-white/30">EMAIL</label>
+              <label className="mb-1.5 block text-sm font-bold tracking-widest text-[#57534c]">EMAIL</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="admin@ibvgold.co.za"
-                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-[#396978]/40"
+                className="w-full rounded-xl border border-[#e3e0da] bg-[#f7f5f0] px-4 py-3 text-base text-[#26231f] placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-[#a47c2e]"
               />
             </div>
 
             <div>
-              <label className="mb-1.5 block text-[10px] font-bold tracking-widest text-white/30">PASSWORD</label>
+              <label className="mb-1.5 block text-sm font-bold tracking-widest text-[#57534c]">PASSWORD</label>
               <div className="relative">
                 <input
                   type={showPassword ? 'text' : 'password'}
@@ -76,12 +76,12 @@ export default function AdminLogin() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pr-12 text-sm text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-[#396978]/40"
+                  className="w-full rounded-xl border border-[#e3e0da] bg-[#f7f5f0] px-4 py-3 pr-12 text-base text-[#26231f] placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-[#a47c2e]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/25 hover:text-white/50"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534c] hover:text-[#57534c]"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -89,14 +89,14 @@ export default function AdminLogin() {
             </div>
 
             {error && (
-              <p className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-2.5 text-xs text-red-400">{error}</p>
+              <p className="rounded-xl border border-red-400/20 bg-red-400/10 px-4 py-2.5 text-sm text-red-700">{error}</p>
             )}
-            {isAuthenticated && !roleLoading && !isAdmin && <p role="alert" className="rounded-xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-200">This account does not have administrator access. Sign in with an admin account.</p>}
+            {isAuthenticated && !roleLoading && !isAdmin && <p role="alert" className="rounded-xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-base text-amber-700">This account does not have administrator access. Sign in with an admin account.</p>}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full rounded-xl bg-[#396978] py-3 text-sm font-bold text-white transition-colors hover:bg-[#2f5b6d] disabled:opacity-50"
+              className="w-full rounded-xl bg-[#2d2a26] py-3 text-base font-bold text-white transition-colors hover:bg-[#454037] disabled:opacity-50"
             >
               {loading ? 'Signing in…' : 'Sign In'}
             </button>

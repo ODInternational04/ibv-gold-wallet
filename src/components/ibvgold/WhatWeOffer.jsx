@@ -7,31 +7,31 @@ const offerings = [
     title: "Build your digital gold portfolio.",
     image: "/5.png",
     imageClassName: "max-w-[17.28rem] max-h-[10.44rem]",
-    bg: "from-[#1a1700]/60 to-black",
+    bg: "from-white/60 to-black",
   },
   {
     label: "Upload your gold",
     title: "Digitise your gold Krugerrands.",
     image: "/8.png",
-    bg: "from-[#0a1a0a]/60 to-black",
+    bg: "from-white/60 to-black",
   },
   {
     label: "Credit Facility",
     title: "Access a credit facility for gold liquidity.",
     image: "/6.png",
-    bg: "from-[#0d0d1a]/60 to-black",
+    bg: "from-white/60 to-black",
   },
   {
     label: "For Business",
     title: "Get a zero-inflation business account.",
     image: "/7.png",
-    bg: "from-[#1a0d00]/60 to-black",
+    bg: "from-white/60 to-black",
   },
 ];
 
 export default function WhatWeOffer() {
   return (
-    <section id="what-we-offer" className="bg-[#f7f4ee] px-6 py-20 md:px-10 lg:px-[120px]">
+    <section id="what-we-offer" className="bg-[#ffffff] px-6 py-20 md:px-10 lg:px-[120px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {offerings.map((item, i) => (
           <motion.div
@@ -40,13 +40,13 @@ export default function WhatWeOffer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.6 }}
-            className={`relative group cursor-pointer overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-b ${item.bg} transition-all duration-500 hover:border-[#C9A84C]/20`}
+            className={`relative group cursor-pointer overflow-hidden rounded-2xl border border-[#e3e0da] bg-gradient-to-b ${item.bg} transition-all duration-500 hover:border-[#dedbd4]`}
           >
             <div className="p-8 pb-0">
-              <p className="mb-2 text-xs font-bold uppercase tracking-widest text-[#C9A84C]">
+              <p className="mb-2 text-sm font-bold uppercase tracking-widest text-[#785616]">
                 {item.label}
               </p>
-              <h3 className="text-xl font-semibold leading-tight text-white md:text-2xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+              <h3 className="text-xl font-semibold leading-tight text-[#26231f] md:text-2xl" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
                 {item.title}
               </h3>
             </div>
