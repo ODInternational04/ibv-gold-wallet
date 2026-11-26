@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Plus, Pencil } from "lucide-react";
+import { Plus, Pencil, Upload } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
 import {
   loadProducts,
@@ -86,7 +86,7 @@ function ProductEditor({ product, onClose, onSaved }) {
               .single()
           : supabase.from("products").insert(payload).select("id").single(),
       );
-      onSaved();
+      onSaved(form.active);
       onClose();
     } catch (err) {
       if (uploaded)
@@ -216,6 +216,10 @@ function ProductEditor({ product, onClose, onSaved }) {
             />
             Publish this product in the customer catalog
           </label>
+          <p className="admin-full admin-card-note">
+            Only published products appear under Transact. Leave this unchecked
+            to save a draft.
+          </p>
           <footer className="admin-full">
             <button
               type="button"
@@ -226,7 +230,11 @@ function ProductEditor({ product, onClose, onSaved }) {
               Cancel
             </button>
             <button disabled={busy} className="admin-button primary">
-              {busy ? "Saving…" : "Save product"}
+              {busy
+                ? "Saving…"
+                : form.active
+                  ? "Save & publish"
+                  : "Save as draft"}
             </button>
           </footer>
         </form>
@@ -243,7 +251,36 @@ export default function AdminProducts() {
   });
   const [search, setSearch] = useState("");
   const [editing, setEditing] = useState(undefined);
-  const [saved, setSaved] = useState(false);
+  const [saved, setSaved] = useState("");
+  const [publishing, setPublishing] = useState(null);
+  const [publishError, setPublishError] = useState(null);
+  const refreshCatalog = () => {
+    client.invalidateQueries({ queryKey: ["products"] });
+    client.invalidateQueries({ queryKey: ["admin-stats"] });
+  };
+  const publish = async (product) => {
+    setPublishing(product.id);
+    setPublishError(null);
+    setSaved("");
+    try {
+      await result(
+        supabase
+          .from("products")
+          .update({ active: true })
+          .eq("id", product.id)
+          .select("id")
+          .single(),
+      );
+      refreshCatalog();
+      setSaved(
+        `${product.name} is published and will appear under Transact within 15 seconds.`,
+      );
+    } catch (error) {
+      setPublishError(error);
+    } finally {
+      setPublishing(null);
+    }
+  };
   const products = (query.data ?? []).filter((p) =>
     `${p.name} ${p.sku}`.toLowerCase().includes(search.toLowerCase()),
   );
@@ -257,17 +294,17 @@ export default function AdminProducts() {
           className="admin-button primary"
           onClick={() => {
             setEditing(null);
-            setSaved(false);
+            setSaved("");
           }}
         >
           <Plus size={17} />
           Add product
         </button>
       </PageHeader>
-      <ErrorMessage error={query.error} />
+      <ErrorMessage error={query.error || publishError} />
       {saved && (
         <p role="status" className="admin-success">
-          Product saved. The customer catalog will refresh with your changes.
+          {saved}
         </p>
       )}
       <div className="admin-toolbar">
@@ -315,11 +352,23 @@ export default function AdminProducts() {
                     <Status value={p.active ? "active" : "draft"} />
                   </td>
                   <td>
+                    {!p.active && (
+                      <button
+                        type="button"
+                        className="admin-button primary"
+                        disabled={publishing !== null}
+                        style={{ marginRight: 8 }}
+                        onClick={() => publish(p)}
+                      >
+                        <Upload size={14} />
+                        {publishing === p.id ? "Publishing…" : "Publish"}
+                      </button>
+                    )}
                     <button
                       className="admin-button"
                       onClick={() => {
                         setEditing(p);
-                        setSaved(false);
+                        setSaved("");
                       }}
                     >
                       <Pencil size={14} />
@@ -344,10 +393,13 @@ export default function AdminProducts() {
         <ProductEditor
           product={editing}
           onClose={() => setEditing(undefined)}
-          onSaved={() => {
-            client.invalidateQueries({ queryKey: ["products"] });
-            client.invalidateQueries({ queryKey: ["admin-stats"] });
-            setSaved(true);
+          onSaved={(active) => {
+            refreshCatalog();
+            setSaved(
+              active
+                ? "Product published. It will appear under Transact within 15 seconds."
+                : "Saved as a draft. Publish this product when you want it to appear under Transact.",
+            );
           }}
         />
       )}
