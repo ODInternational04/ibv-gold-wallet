@@ -120,6 +120,10 @@ Never prefix the server secret or PayFast passphrase with `VITE_`. Merchant
 credentials supplied in chat are saved only in the ignored local `.env.local`;
 GitHub intentionally contains no account-specific payment credentials.
 
+`SUPABASE_SECRET_KEY` is also accepted as the server secret variable name. Use
+either that name or `SUPABASE_SERVICE_ROLE_KEY`; a publishable key cannot replace
+the server secret. Missing settings are identified explicitly by the payment API.
+
 The registered notification URL is `https://<your-domain>/api/payfast/notify`.
 It must be publicly accessible to PayFast: do not put deployment authentication,
 CAPTCHA, or a blocking firewall in front of this callback. The callback checks the

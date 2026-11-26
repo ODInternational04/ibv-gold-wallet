@@ -14,6 +14,16 @@ import {
 } from "../server/payfast.mjs";
 import checkoutHandler from "../api/payfast/checkout.js";
 import notifyHandler from "../api/payfast/notify.js";
+import { databaseConfig } from '../server/supabase.mjs';
+
+test('database configuration identifies missing settings without revealing values',()=>{
+  assert.throws(()=>databaseConfig({}),/SUPABASE_URL/);
+  const env={VITE_SUPABASE_URL:'https://project.supabase.co',VITE_SUPABASE_PUBLISHABLE_KEY:'sb_publishable_fixture'};
+  assert.throws(()=>databaseConfig(env,true),/SUPABASE_SERVICE_ROLE_KEY/);
+  assert.equal(databaseConfig({...env,SUPABASE_SECRET_KEY:' sb_secret_fixture '},true).key,'sb_secret_fixture');
+  assert.equal(databaseConfig({...env,SUPABASE_SERVICE_ROLE_KEY:' ',SUPABASE_SECRET_KEY:'sb_secret_fixture'},true).key,'sb_secret_fixture');
+  assert.throws(()=>databaseConfig({...env,SUPABASE_SERVICE_ROLE_KEY:'sb_publishable_fixture'},true),/publishable key/);
+});
 
 const settings = {
   mode: "live",
