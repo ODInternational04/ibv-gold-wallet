@@ -3,12 +3,10 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const navLinks = [
-  { label: "Buy Gold", href: "#buy-gold" },
-  { label: "What We Offer", href: "#what-we-offer" },
-  { label: "Partner With Us", href: "#partners" },
-  { label: "About Us", href: "#about" },
-  { label: "Explore", href: "#explore" },
-  { label: "Live Audit", href: "#audit" },
+  { label: "Discover gold", href: "#buy-gold" },
+  { label: "The wallet", href: "#what-we-offer" },
+  { label: "About IBV Gold", href: "#about" },
+  { label: "Getting started", href: "#getting-started" },
 ];
 
 export default function Navbar() {
@@ -19,7 +17,11 @@ export default function Navbar() {
       <div className="max-w-[1920px] mx-auto px-6 lg:px-10 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <img src="/ibv-gold-logo.png" alt="IBV Gold Logo" className="h-8 w-auto" />
+          <img
+            src="/ibv-gold-logo.png"
+            alt="IBV Gold Logo"
+            className="h-8 w-auto"
+          />
         </a>
 
         {/* Desktop links */}
@@ -54,9 +56,15 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <button
           className="lg:hidden text-[#26231f]"
+          aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={mobileOpen}
           onClick={() => setMobileOpen(!mobileOpen)}
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 

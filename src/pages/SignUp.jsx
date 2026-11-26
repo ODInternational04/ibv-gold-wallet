@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./auth.css";
 import { ChevronLeft, Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
@@ -50,15 +51,22 @@ export default function SignUp() {
 
   if (success) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#ffffff] px-6">
-        <div className="w-full max-w-md text-center">
-          <h2 className="mb-4 text-3xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>
+      <div className="auth-page auth-success-page">
+        <div className="auth-card text-center">
+          <h2
+            className="mb-4 text-3xl font-semibold text-[#26231f]"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+          >
             Check your email
           </h2>
           <p className="mb-6 text-base text-[#57534c]">
-            We sent a confirmation link to <strong>{email}</strong>. Please check your inbox and confirm your email to continue.
+            We sent a confirmation link to <strong>{email}</strong>. Please
+            check your inbox and confirm your email to continue.
           </p>
-          <Link to="/login" className="text-base font-semibold text-[#57534c] hover:underline">
+          <Link
+            to="/login"
+            className="text-base font-semibold text-[#57534c] hover:underline"
+          >
             Back to Sign In
           </Link>
         </div>
@@ -67,32 +75,61 @@ export default function SignUp() {
   }
 
   return (
-    <div className="flex min-h-screen bg-[#ffffff]">
+    <div className="auth-page">
       {/* Left panel */}
-      <div className="hidden w-1/2 items-center justify-center bg-white md:flex">
+      <div className="auth-brand-panel">
         <div className="text-center">
           <div className="flex items-center gap-1 justify-center mb-4">
-            <span className="text-[#57534c] text-5xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-[#26231f] text-4xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
+            <span
+              className="text-[#57534c] text-5xl font-semibold"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+            >
+              IBV
+            </span>
+            <span
+              className="text-[#26231f] text-4xl font-semibold tracking-widest"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+            >
+              GOLD
+            </span>
           </div>
-          <p className="text-[#57534c] text-base font-semibold tracking-[0.35em]">CREATE AN ACCOUNT</p>
+          <p className="text-[#57534c] text-base font-semibold tracking-[0.35em]">
+            CREATE AN ACCOUNT
+          </p>
+          <p className="auth-brand-story">
+            A world of gold.
+            <br />
+            One place to call yours.
+          </p>
         </div>
       </div>
 
       {/* Right panel */}
-      <div className="flex w-full items-center justify-center bg-[#ffffff] px-8 py-10 md:w-1/2">
-        <div className="w-full max-w-md">
-          <Link to="/" className="mb-8 flex items-center gap-1 text-base font-bold text-[#57534c] hover:opacity-80">
+      <div className="auth-form-panel">
+        <div className="auth-card">
+          <Link
+            to="/"
+            className="mb-8 flex items-center gap-1 text-base font-bold text-[#57534c] hover:opacity-80"
+          >
             <ChevronLeft className="w-4 h-4" />
             Back
           </Link>
 
-          <h1 className="mb-2 text-4xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Create Account</h1>
-          <p className="mb-8 text-base text-[#57534c]">Join IBV Gold and start your gold-backed financial journey.</p>
+          <h1
+            className="mb-2 text-4xl font-semibold text-[#26231f]"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+          >
+            Create Account
+          </h1>
+          <p className="mb-8 text-base text-[#57534c]">
+            Join IBV Gold and start your gold-backed financial journey.
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">Email</label>
+              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">
+                Email
+              </label>
               <input
                 type="email"
                 required
@@ -104,7 +141,9 @@ export default function SignUp() {
             </div>
 
             <div>
-              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">Password</label>
+              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">
+                Password
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -119,13 +158,19 @@ export default function SignUp() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534c] hover:text-[#57534c]"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">Confirm Password</label>
+              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">
+                Confirm Password
+              </label>
               <input
                 type="password"
                 required
@@ -149,7 +194,10 @@ export default function SignUp() {
 
           <p className="mt-6 text-center text-base text-[#57534c]">
             Already have an account?{" "}
-            <Link to="/login" className="font-semibold text-[#57534c] hover:underline">
+            <Link
+              to="/login"
+              className="font-semibold text-[#57534c] hover:underline"
+            >
               Sign In
             </Link>
           </p>

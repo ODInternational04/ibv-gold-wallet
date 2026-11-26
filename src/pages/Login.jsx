@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./auth.css";
 import { ChevronLeft, Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/lib/AuthContext";
@@ -32,32 +33,61 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#ffffff]">
+    <div className="auth-page">
       {/* Left panel */}
-      <div className="hidden w-1/2 items-center justify-center bg-white md:flex">
+      <div className="auth-brand-panel">
         <div className="text-center">
           <div className="flex items-center gap-1 justify-center mb-4">
-            <span className="text-[#57534c] text-5xl font-semibold" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>IBV</span>
-            <span className="text-[#26231f] text-4xl font-semibold tracking-widest" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>GOLD</span>
+            <span
+              className="text-[#57534c] text-5xl font-semibold"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+            >
+              IBV
+            </span>
+            <span
+              className="text-[#26231f] text-4xl font-semibold tracking-widest"
+              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+            >
+              GOLD
+            </span>
           </div>
-          <p className="text-[#57534c] text-base font-semibold tracking-[0.35em]">WELCOME BACK</p>
+          <p className="text-[#57534c] text-base font-semibold tracking-[0.35em]">
+            WELCOME BACK
+          </p>
+          <p className="auth-brand-story">
+            A world of gold.
+            <br />
+            One place to call yours.
+          </p>
         </div>
       </div>
 
       {/* Right panel */}
-      <div className="flex w-full items-center justify-center bg-[#ffffff] px-8 py-10 md:w-1/2">
-        <div className="w-full max-w-md">
-          <Link to="/" className="mb-8 flex items-center gap-1 text-base font-bold text-[#57534c] hover:opacity-80">
+      <div className="auth-form-panel">
+        <div className="auth-card">
+          <Link
+            to="/"
+            className="mb-8 flex items-center gap-1 text-base font-bold text-[#57534c] hover:opacity-80"
+          >
             <ChevronLeft className="w-4 h-4" />
             Back
           </Link>
 
-          <h1 className="mb-2 text-4xl font-semibold text-[#26231f]" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}>Sign In</h1>
-          <p className="mb-8 text-base text-[#57534c]">Welcome back. Enter your credentials to continue.</p>
+          <h1
+            className="mb-2 text-4xl font-semibold text-[#26231f]"
+            style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
+          >
+            Sign In
+          </h1>
+          <p className="mb-8 text-base text-[#57534c]">
+            Welcome back. Enter your credentials to continue.
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">Email</label>
+              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">
+                Email
+              </label>
               <input
                 type="email"
                 required
@@ -69,7 +99,9 @@ export default function Login() {
             </div>
 
             <div>
-              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">Password</label>
+              <label className="block mb-1.5 text-sm font-semibold text-[#26231f] uppercase tracking-wider">
+                Password
+              </label>
               <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
@@ -84,7 +116,11 @@ export default function Login() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-[#57534c] hover:text-[#57534c]"
                 >
-                  {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  {showPassword ? (
+                    <EyeOff className="w-4 h-4" />
+                  ) : (
+                    <Eye className="w-4 h-4" />
+                  )}
                 </button>
               </div>
             </div>
@@ -102,7 +138,10 @@ export default function Login() {
 
           <p className="mt-6 text-center text-base text-[#57534c]">
             Don't have an account?{" "}
-            <Link to="/signup" className="font-semibold text-[#57534c] hover:underline">
+            <Link
+              to="/signup"
+              className="font-semibold text-[#57534c] hover:underline"
+            >
               Sign Up
             </Link>
           </p>
