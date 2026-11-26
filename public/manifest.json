@@ -1,0 +1,9 @@
+{
+  "name": "IBV Gold",
+  "short_name": "IBV Gold",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0c0e",
+  "theme_color": "#396978",
+  "icons": []
+}

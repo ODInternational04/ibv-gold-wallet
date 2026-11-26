@@ -1,0 +1,101 @@
+const db = globalThis.__B44_DB__ || { auth:{ isAuthenticated: async()=>false, me: async()=>null }, entities:new Proxy({}, { get:()=>({ filter:async()=>[], get:async()=>null, create:async()=>({}), update:async()=>({}), delete:async()=>({}) }) }), integrations:{ Core:{ UploadFile:async()=>({ file_url:'' }) } } };
+
+**Welcome to your Base44 project** 
+
+**About**
+
+View and Edit  your app on [db.com](http://db.com) 
+
+This project contains everything you need to run your app locally.
+
+**Edit the code in your local development environment**
+
+Any change pushed to the repo will also be reflected in the Base44 Builder.
+
+**Prerequisites:** 
+
+1. Clone the repository using the project's Git URL 
+2. Navigate to the project directory
+3. Install dependencies: `npm install`
+4. Create an `.env.local` file and set the right environment variables
+
+```
+VITE_BASE44_APP_ID=your_app_id
+VITE_BASE44_APP_BASE_URL=your_backend_url
+
+e.g.
+VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
+VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.db.app
+```
+
+Run the app: `npm run dev`
+
+**Publish your changes**
+
+Open [db.com](http://db.com) and click on Publish.
+
+**Docs & Support**
+
+Documentation: [https://docs.db.com/Integrations/Using-GitHub](https://docs.db.com/Integrations/Using-GitHub)
+
+Support: [https://app.db.com/support](https://app.db.com/support)
+
+## Admin operations
+
+Run `npm run dev` and open `/admin/login`. Sign in with the existing Supabase
+account assigned `admin` in `public.user_roles`. The dashboard is at `/admin`.
+
+- **Products & prices:** add or edit products, upload JPG/PNG/WebP photos (5 MB
+  maximum), set ZAR prices, and publish or hide products. The customer catalog
+  refreshes every 15 seconds. Hiding a product preserves its record.
+- **Customers:** view identity status and cash balances. Record settled cash only
+  after independently reconciling a real payment or sale. Each settlement requires
+  a unique reference. This action does not collect money or sell gold.
+- **Redemption values:** open `/admin/redemptions` to set a separate redemption
+  amount in ZAR for each product. Active products with a configured value appear
+  at `/app/vault`; customer values refresh every 15 seconds. New products need a
+  redemption value set here before they appear in the vault. Purchase prices stay
+  independent. Existing products started with their previous displayed amounts.
+- **Withdrawals:** customers request withdrawals under Transact → Withdraw. Only
+  verified customers with sufficient settled cash can submit requests. Funds are
+  reserved atomically. Verify bank ownership before approval, mark processing when
+  initiating the transfer, and mark paid only after bank confirmation with its
+  unique reference. Rejected or definitively failed transfers release reservations.
+  Never mark an unknown bank outcome failed: funds must stay reserved until resolved.
+- **Notifications:** new requests create persistent alerts for every admin. The
+  portal polls every 15 seconds while open; each admin has their own read receipts.
+  Customers receive in-wallet status alerts. Email/SMS and automatic bank payouts
+  are not configured.
+- **Overview:** customer and verification counts, active products, open and paid
+  withdrawals, settled/available/reserved cash, and a seven-day request chart.
+
+The backend is installed in the existing `rivvsywzrmhfqesyervu` Supabase project.
+Its source is `supabase/migrations/20261126074941_admin_backend.sql`. It requires
+the existing transactions, verification and role tables. Do not rerun an applied
+migration or replay the older manual setup scripts against an installed project.
+Keep `wallet_private` out of the Supabase API's exposed schemas.
+
+Money is stored as integer cents. Customers have read-only access to their own
+cash accounts, ledger and requests; validated database functions perform changes.
+The cash ledger is independent of historical gold transactions. The existing
+PayFast checkout remains sandbox-only: browser return URLs cannot confirm a
+payment or credit gold/cash. Production buying needs a separately verified
+server-side payment integration.
+
+Validation:
+
+```text
+npm run build
+node scripts/verify-wallet-api.mjs
+node scripts/wallet-db.mjs scripts/test-wallet-backend.sql
+node scripts/wallet-db.mjs scripts/verify-wallet-schema.sql
+node scripts/wallet-db.mjs --security-advisors
+```
+
+The database helper reads a one-line JSON object containing `token` from hidden
+standard input. Use a Supabase personal access token authorized for this project;
+never put it in source, environment files, browser code, or command arguments.
+The integration SQL creates temporary fixtures within a transaction and rolls
+them all back. It covers authorization, balance reservation, duplicate requests,
+duplicate settlement references, status transitions, released funds, ledger
+reconciliation, notification access, and draft product privacy.

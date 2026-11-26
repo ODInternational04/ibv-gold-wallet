@@ -1,0 +1,29 @@
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="108" y1="63" x2="620" y2="423" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FBF4E5"/>
+      <stop offset="0.58" stop-color="#F2E3BF"/>
+      <stop offset="1" stop-color="#E1CC95"/>
+    </linearGradient>
+    <radialGradient id="coin" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(359.5 239.5) rotate(90) scale(154.5)">
+      <stop stop-color="#FFE7A6"/>
+      <stop offset="0.45" stop-color="#E8B85A"/>
+      <stop offset="1" stop-color="#986210"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="214" y1="84" x2="506" y2="395" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF6D4"/>
+      <stop offset="1" stop-color="#A86F1F"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" rx="40" fill="url(#bg)"/>
+  <circle cx="129" cy="110" r="72" fill="#D8A74C" fill-opacity="0.14"/>
+  <circle cx="608" cy="377" r="78" fill="#D8A74C" fill-opacity="0.13"/>
+  <circle cx="360" cy="240" r="159" fill="url(#rim)"/>
+  <circle cx="360" cy="240" r="142" fill="url(#coin)"/>
+  <circle cx="360" cy="240" r="120" stroke="#FFF4CB" stroke-opacity="0.45" stroke-width="3" stroke-dasharray="3 10"/>
+  <path d="M361.947 178C335.521 178 315.982 193.749 311 216.625C327.365 213.286 344.754 209.747 359.462 209.747C389.233 209.747 407 226.409 407 251.539C407 278.272 387.684 301 349.305 301C333.542 301 314.677 296.426 302 288.394L311.523 260.053C323.221 267.406 337.971 271.844 348.967 271.844C366.398 271.844 376.255 264.418 376.255 252.464C376.255 241.109 367.708 234.327 351.974 234.327C342.874 234.327 334.961 235.183 325.124 237.667L320.002 228.849L330.949 177.999H361.947V178Z" fill="#85540E"/>
+  <path d="M397 274C431.242 274 459 246.242 459 212C459 177.758 431.242 150 397 150C362.758 150 335 177.758 335 212C335 246.242 362.758 274 397 274Z" fill="#FFF3CA" fill-opacity="0.08"/>
+  <text x="245" y="128" fill="#7A5B1B" font-family="Arial, sans-serif" font-size="24" font-weight="700">SOUTH AFRICA</text>
+  <text x="265" y="367" fill="#5D3906" font-family="Arial, sans-serif" font-size="28" font-weight="700">KRUGERRAND</text>
+  <text x="287" y="398" fill="#5D3906" font-family="Arial, sans-serif" font-size="18" font-weight="700">1 OZ FINE GOLD</text>
+</svg>

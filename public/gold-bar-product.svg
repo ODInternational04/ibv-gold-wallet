@@ -1,0 +1,28 @@
+<svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="80" y1="60" x2="640" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F9F2DF"/>
+      <stop offset="0.58" stop-color="#F0E3C3"/>
+      <stop offset="1" stop-color="#E3D1A3"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="190" y1="126" x2="545" y2="386" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFE39A"/>
+      <stop offset="0.42" stop-color="#F4C763"/>
+      <stop offset="1" stop-color="#B97C18"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="234" y1="146" x2="447" y2="316" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF1BC" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFF1BC" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="720" height="480" rx="40" fill="url(#bg)"/>
+  <circle cx="603" cy="104" r="54" fill="#D5A847" fill-opacity="0.15"/>
+  <circle cx="124" cy="398" r="70" fill="#D5A847" fill-opacity="0.14"/>
+  <path d="M193 164C193 146.327 207.327 132 225 132H470.551C484.532 132 496.968 141.051 501.285 154.349L543.756 285.162C550.475 305.851 535.044 327 513.291 327H249C231.327 327 217 312.673 217 295V164Z" fill="url(#bar)"/>
+  <path d="M217 163.506C217 145.669 231.593 131.29 249.43 131.554L474.451 134.888C487.839 135.086 499.584 143.789 503.674 156.54L509 173H217V163.506Z" fill="#FFF1BC" fill-opacity="0.55"/>
+  <path d="M243 181C243 169.954 251.954 161 263 161H427.094C435.671 161 443.401 166.477 446.413 174.508L476.431 254.556C481.339 267.644 471.663 282 457.685 282H263C251.954 282 243 273.046 243 262V181Z" fill="#A86D12" fill-opacity="0.4"/>
+  <path d="M256 170H430.103C435.015 170 439.438 173.004 441.24 177.574L463.194 233.227C466.647 241.98 460.186 251.5 450.777 251.5H276C264.954 251.5 256 242.546 256 231.5V170Z" fill="url(#shine)"/>
+  <text x="275" y="216" fill="#6F4D11" font-family="Arial, sans-serif" font-size="32" font-weight="700">IBV GOLD</text>
+  <text x="275" y="252" fill="#5E3A05" font-family="Arial, sans-serif" font-size="18" font-weight="700">FINE GOLD 999.9</text>
+  <text x="275" y="280" fill="#5E3A05" font-family="Arial, sans-serif" font-size="15" font-weight="700">SECURE VAULTED PRODUCT</text>
+</svg>
