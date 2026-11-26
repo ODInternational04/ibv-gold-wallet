@@ -77,10 +77,11 @@ Keep `wallet_private` out of the Supabase API's exposed schemas.
 
 Money is stored as integer cents. Customers have read-only access to their own
 cash accounts, ledger and requests; validated database functions perform changes.
-The cash ledger is independent of historical gold transactions. The existing
-PayFast checkout remains sandbox-only: browser return URLs cannot confirm a
-payment or credit gold/cash. Production buying needs a separately verified
-server-side payment integration.
+The cash ledger is independent of gold transactions. PayFast checkout is created
+server-side from a verified customer's selected product and its current database
+price. Browser return URLs cannot confirm payments. Only a validated PayFast
+notification can settle an order and add purchased gold to holdings; it never
+creates withdrawable cash. Sandbox orders never credit real holdings.
 
 Validation:
 
@@ -99,3 +100,48 @@ The integration SQL creates temporary fixtures within a transaction and rolls
 them all back. It covers authorization, balance reservation, duplicate requests,
 duplicate settlement references, status transitions, released funds, ledger
 reconciliation, notification access, and draft product privacy.
+
+## PayFast on Vercel
+
+Keep the existing two `VITE_SUPABASE_*` variables. Add the following server-only
+variables in Vercel's Production environment, then redeploy:
+
+| Variable | Value |
+| --- | --- |
+| `PAYFAST_MODE` | `live` for live credentials, `sandbox` for separate sandbox credentials |
+| `PAYFAST_MERCHANT_ID` | Your matching PayFast Merchant ID |
+| `PAYFAST_MERCHANT_KEY` | Your matching PayFast Merchant Key |
+| `PAYFAST_PASSPHRASE` | The security passphrase configured in the same PayFast account |
+| `APP_BASE_URL` | Your canonical public HTTPS origin, without a trailing path |
+| `SUPABASE_SERVICE_ROLE_KEY` | This Supabase project's server secret or legacy service-role key |
+| `SUPABASE_URL` | Optional if `VITE_SUPABASE_URL` is already set |
+
+Never prefix the server secret or PayFast passphrase with `VITE_`. Merchant
+credentials supplied in chat are saved only in the ignored local `.env.local`;
+GitHub intentionally contains no account-specific payment credentials.
+
+The registered notification URL is `https://<your-domain>/api/payfast/notify`.
+It must be publicly accessible to PayFast: do not put deployment authentication,
+CAPTCHA, or a blocking firewall in front of this callback. The callback checks the
+merchant, signature, PayFast source address, exact order amount, payment mode and
+PayFast's server confirmation before recording a COMPLETE payment. It returns
+an error on temporary settlement failure so PayFast can retry. Repeated valid
+notifications credit an order only once.
+
+`vercel.json` preserves `/api/*` for server functions and rewrites other routes
+to the React application. Plain `npm run dev` serves only Vite; payment functions
+require Vercel deployment or Vercel's local development server.
+
+The installed database addition is
+`supabase/migrations/20261126123255_payfast_orders.sql`.
+Validate without making live payments:
+
+```text
+node --test scripts/test-payfast.mjs
+node scripts/wallet-db.mjs scripts/test-payfast-orders.sql
+```
+
+After all variables are saved and the deployment is ready, sign in with a verified
+customer account and use Buy to open PayFast. The customer must complete any live
+payment themselves. A successful browser redirect initially displays pending
+confirmation, then updates holdings after the independently confirmed notification.
