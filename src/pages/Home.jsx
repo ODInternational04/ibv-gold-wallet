@@ -33,9 +33,9 @@ export default function Home() {
                   Something <em>golden.</em>
                 </h1>
                 <p>
-                  Bring the timeless appeal of gold into your everyday life.
-                  Discover Krugerrands, explore your portfolio, and stay
-                  connected to your gold with IBV Gold.
+                  Buy real gold and hold it digitally in your IBV Gold wallet.
+                  Track your holdings, sell your digital gold when you choose,
+                  or redeem it for physical gold at any time—all from one app.
                 </p>
                 <div className="home-cta-row">
                   <Link className="home-button" to="/signup">
