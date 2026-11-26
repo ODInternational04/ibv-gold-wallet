@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router-dom";
-import { ShieldCheck, Scale, CreditCard, ChevronRight, Info, Mail, Clock, CheckCircle2 } from "lucide-react";
+import { ShieldCheck, Scale, ChevronRight, Info, Mail, Clock, CheckCircle2 } from "lucide-react";
 import GoldPriceChart from "../../components/app/GoldPriceChart";
 import { useVerification } from "@/hooks/useVerification";
 import { useGoldPrice } from "@/hooks/useGoldPrice";
@@ -91,18 +91,6 @@ export default function Dashboard() {
             <Info className="w-3.5 h-3.5 text-[#57534c]" />
           </div>
         </Link>
-
-        {/* Join Early Access */}
-        <div className="flex items-center justify-between rounded-xl border border-[#dedbd4] bg-[#faf3e3] px-4 py-4 transition-colors hover:border-[#dedbd4] sm:px-5">
-          <div className="flex items-center gap-3">
-            <CreditCard className="w-5 h-5 text-[#57534c]" />
-            <div>
-              <p className="text-[#57534c] text-sm font-bold tracking-widest">JOIN FOR</p>
-              <p className="text-[#785616] text-sm font-semibold tracking-widest">EARLY ACCESS</p>
-            </div>
-          </div>
-          <ChevronRight className="w-4 h-4 text-[#57534c]" />
-        </div>
 
         {/* Latest Transactions */}
         <div className="rounded-xl border border-[#dedbd4] bg-white p-4 sm:p-5">
