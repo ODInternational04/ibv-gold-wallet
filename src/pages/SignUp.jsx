@@ -94,7 +94,7 @@ export default function SignUp() {
             </span>
           </div>
           <p className="text-[#57534c] text-base font-semibold tracking-[0.35em]">
-            CREATE AN ACCOUNT
+            PHYSICAL GOLD. DIGITAL ACCESS.
           </p>
           <p className="auth-brand-story">
             A world of gold.

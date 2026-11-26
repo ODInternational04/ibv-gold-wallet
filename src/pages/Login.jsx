@@ -52,7 +52,7 @@ export default function Login() {
             </span>
           </div>
           <p className="text-[#57534c] text-base font-semibold tracking-[0.35em]">
-            WELCOME BACK
+            PHYSICAL GOLD. DIGITAL ACCESS.
           </p>
           <p className="auth-brand-story">
             A world of gold.
