@@ -2,6 +2,9 @@ import React, { useState, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Plus, Pencil, Upload } from "lucide-react";
 import { supabase } from "@/utils/supabase/client";
+import { useGoldPrice } from "@/hooks/useGoldPrice";
+import { spotSellingPrice } from "@/lib/spot-selling-price.mjs";
+import SpotPrice from "@/components/admin/SpotPrice";
 import {
   loadProducts,
   money,
@@ -45,11 +48,40 @@ function ProductEditor({ product, onClose, onSaved }) {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [generatedNote, setGeneratedNote] = useState("");
+  const { refetch: refreshSpot } = useGoldPrice();
+  const generatePrice = async () => {
+    setGenerating(true);
+    setError(null);
+    setGeneratedNote("");
+    try {
+      if (
+        !Number.isFinite(Number(form.oz_amount)) ||
+        Number(form.oz_amount) <= 0
+      )
+        throw new Error("Enter a positive gold weight in troy ounces first.");
+      const latest = await refreshSpot();
+      if (latest.error || !latest.data)
+        throw new Error(
+          "Could not fetch the current spot price. Please try again.",
+        );
+      const price = spotSellingPrice(latest.data.priceZAR, form.oz_amount);
+      set("price", price);
+      setGeneratedNote(
+        `Generated from R${latest.data.priceZAR.toFixed(2)} per troy ounce × ${form.oz_amount} oz. No markup added. Save to apply.`,
+      );
+    } catch (err) {
+      setError(err);
+    } finally {
+      setGenerating(false);
+    }
+  };
   const saving = useRef(false);
   const set = (key, value) => setForm((f) => ({ ...f, [key]: value }));
   const save = async (event) => {
     event.preventDefault();
-    if (saving.current) return;
+    if (saving.current || generating) return;
     saving.current = true;
     setBusy(true);
     setError(null);
@@ -101,14 +133,14 @@ function ProductEditor({ product, onClose, onSaved }) {
     <Dialog
       open
       onOpenChange={(value) => {
-        if (!value && !busy) onClose();
+        if (!value && !busy && !generating) onClose();
       }}
     >
       <DialogContent
         className="admin-shell admin-modal"
         style={{ display: "block" }}
-        onEscapeKeyDown={(e) => busy && e.preventDefault()}
-        onInteractOutside={(e) => busy && e.preventDefault()}
+        onEscapeKeyDown={(e) => (busy || generating) && e.preventDefault()}
+        onInteractOutside={(e) => (busy || generating) && e.preventDefault()}
       >
         <DialogTitle className="sr-only">
           {product ? "Edit product" : "Add product"}
@@ -145,8 +177,28 @@ function ProductEditor({ product, onClose, onSaved }) {
               max="100000000"
               step="0.01"
               value={form.price}
-              onChange={(e) => set("price", e.target.value)}
+              disabled={generating}
+              onChange={(e) => {
+                set("price", e.target.value);
+                setGeneratedNote("");
+              }}
             />
+            <button
+              type="button"
+              className="admin-button"
+              style={{ marginTop: 8 }}
+              disabled={busy || generating}
+              onClick={generatePrice}
+            >
+              {generating
+                ? "Fetching spot price…"
+                : "Generate selling price from spot"}
+            </button>
+            {generatedNote && (
+              <p role="status" className="admin-card-note">
+                {generatedNote}
+              </p>
+            )}
           </Field>
           <Field label="Category">
             <input
@@ -173,7 +225,11 @@ function ProductEditor({ product, onClose, onSaved }) {
               max="999999"
               step="0.000001"
               value={form.oz_amount}
-              onChange={(e) => set("oz_amount", e.target.value)}
+              disabled={generating}
+              onChange={(e) => {
+                set("oz_amount", e.target.value);
+                setGeneratedNote("");
+              }}
             />
           </Field>
           <Field label="Fineness">
@@ -223,13 +279,16 @@ function ProductEditor({ product, onClose, onSaved }) {
           <footer className="admin-full">
             <button
               type="button"
-              disabled={busy}
+              disabled={busy || generating}
               className="admin-button"
               onClick={onClose}
             >
               Cancel
             </button>
-            <button disabled={busy} className="admin-button primary">
+            <button
+              disabled={busy || generating}
+              className="admin-button primary"
+            >
               {busy
                 ? "Saving…"
                 : form.active
@@ -301,6 +360,12 @@ export default function AdminProducts() {
           Add product
         </button>
       </PageHeader>
+      <SpotPrice />
+      <div className="admin-notice">
+        To calculate a selling price, add or edit a product and select Generate
+        selling price from spot. The calculation uses its fine gold weight in
+        troy ounces, with no markup added.
+      </div>
       <ErrorMessage error={query.error || publishError} />
       {saved && (
         <p role="status" className="admin-success">

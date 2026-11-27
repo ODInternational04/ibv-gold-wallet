@@ -152,6 +152,9 @@ export default function AdminRedemptions() {
         <Link className="admin-button" to="/app/vault">
           View customer vault
         </Link>
+        <Link className="admin-button" to="/admin/products">
+          Generate selling prices
+        </Link>
       </PageHeader>
       <SpotPrice />
       <div className="admin-notice">
