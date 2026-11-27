@@ -56,6 +56,10 @@ account assigned `admin` in `public.user_roles`. The dashboard is at `/admin`.
   at `/app/vault`; customer values refresh every 15 seconds. New products need a
   redemption value set here before they appear in the vault. Purchase prices stay
   independent. Existing products started with their previous displayed amounts.
+  The dashboard and vault balance summary use these admin values for each owned
+  product, multiplied by the number of units held (including fractional coins).
+  They do not use spot or purchase prices. Values refresh every 15 seconds; if a
+  holding has no unambiguous admin quote, the total shows awaiting admin valuation.
 - **Withdrawals:** customers request withdrawals under Transact → Withdraw. Only
   verified customers with sufficient settled cash can submit requests. Funds are
   reserved atomically. Verify bank ownership before approval, mark processing when

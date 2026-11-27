@@ -33,8 +33,10 @@ export default function PaymentStatus({ orderId }) {
         : false,
   });
   useEffect(() => {
-    if (query.data?.status === "paid")
+    if (query.data?.status === "paid") {
       client.invalidateQueries({ queryKey: ["holdings"] });
+      client.invalidateQueries({ queryKey: ["redemption-summary"] });
+    }
   }, [query.data?.status, client]);
   if (!valid)
     return (

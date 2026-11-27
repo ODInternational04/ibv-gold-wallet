@@ -1,6 +1,7 @@
 ﻿import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { loadProducts, money } from "@/lib/wallet-api";
+import { useRedemptionSummary } from "@/hooks/useRedemptionSummary";
 import {
   Box,
   ChevronRight,
@@ -78,6 +79,7 @@ const statusConfig = {
 /* ─── Balance dialog sub-component ───────────────────── */
 function BalanceDialog() {
   const [open, setOpen] = useState(false);
+  const redemption = useRedemptionSummary();
   return (
     <>
       <button
@@ -101,11 +103,10 @@ function BalanceDialog() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 px-6 py-5">
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               {[
-                { label: "Holdings", value: "0.000,000 oz" },
-                { label: "Redeemable value", value: "ZAR 0.00" },
-                { label: "Pending requests", value: "3" },
+                { label: "Holdings", value: redemption.holdingsText },
+                { label: "Redeemable value", value: redemption.valueText },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -135,17 +136,19 @@ function BalanceDialog() {
                     Redemption rules
                   </p>
                   <p className="mt-1 text-base leading-6 text-[#57534c]">
-                    Physical redemption uses available wallet balance, then
-                    applies fabrication and delivery fees before the request is
-                    released from vault stock.
+                    {redemption.error
+                      ? "Unable to retrieve your current redemption values. Please try again shortly."
+                      : redemption.missingPrices
+                        ? "One or more holdings need a redemption value set by an admin before a complete total can be displayed."
+                        : "Your value is calculated from the current admin-set redemption price for each product you hold. Delivery and handling fees are separate."}
                   </p>
                 </div>
               </div>
             </div>
             <div className="space-y-2 rounded-xl border border-[#dedbd4] bg-[#ffffff] p-4 backdrop-blur-sm">
               {[
-                ["Vault allocation", "0.000,000 oz"],
-                ["Available for redemption", "0.000,000 oz"],
+                ["Vault allocation", redemption.holdingsText],
+                ["Valuation basis", "Admin redemption prices"],
                 ["Settlement currency", "ZAR"],
               ].map(([k, v]) => (
                 <div

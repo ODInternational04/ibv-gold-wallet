@@ -131,6 +131,7 @@ export default function AdminRedemptions() {
   );
   const refresh = () => {
     setSaved(true);
+    client.invalidateQueries({ queryKey: ["redemption-summary"] });
     return client.invalidateQueries({ queryKey: ["products"] });
   };
   return (

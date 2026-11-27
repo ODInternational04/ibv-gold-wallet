@@ -11,7 +11,7 @@ import {
 import PaymentStatus from "@/components/app/PaymentStatus";
 import GoldPriceChart from "../../components/app/GoldPriceChart";
 import { useVerification } from "@/hooks/useVerification";
-import { useGoldPrice } from "@/hooks/useGoldPrice";
+import { useRedemptionSummary } from "@/hooks/useRedemptionSummary";
 import { useHoldings } from "@/hooks/useHoldings";
 
 export default function Dashboard() {
@@ -20,15 +20,10 @@ export default function Dashboard() {
     isPending,
     loading: verificationLoading,
   } = useVerification();
-  const { priceZAR, isLoading: priceLoading } = useGoldPrice();
+  const redemption = useRedemptionSummary();
   const { totalOz, transactions, isLoading: holdingsLoading } = useHoldings();
   const [searchParams] = useSearchParams();
-  const redeemableValue = priceZAR && totalOz > 0 ? totalOz * priceZAR : 0;
   const ozDisplay = totalOz.toFixed(3);
-  const zarDisplay = redeemableValue.toLocaleString("en-ZA", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
   return (
     <div className="flex h-full flex-col gap-4 min-[900px]:flex-row min-[900px]:gap-5">
       {/* Left column */}
@@ -110,12 +105,17 @@ export default function Dashboard() {
               className="text-[#26231f] font-semibold text-lg"
               style={{ fontFamily: "'Cormorant Garamond', Georgia, serif" }}
             >
-              {priceLoading || holdingsLoading
-                ? "Loading…"
-                : `ZAR ${zarDisplay}`}
+              {redemption.valueText}
             </p>
             <Info className="w-3.5 h-3.5 text-[#57534c]" />
           </div>
+          <p className="mb-3 text-sm text-[#57534c]">
+            {redemption.error
+              ? "Unable to retrieve admin redemption values. Please try again shortly."
+              : redemption.missingPrices
+                ? "An admin redemption value is needed for one or more of your holdings."
+                : "Based on the current redemption values set by IBV Gold. Delivery fees are separate."}
+          </p>
           <p className="text-[#57534c] text-sm mb-1 tracking-wide">
             Physical stock status
           </p>
