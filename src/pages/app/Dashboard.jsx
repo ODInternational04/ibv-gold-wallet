@@ -181,9 +181,9 @@ export default function Dashboard() {
               ))}
             </div>
           )}
-          <button className="w-full text-center text-[#57534c] text-base font-medium py-2 border border-[#dedbd4] rounded-xl hover:bg-[#ffffff] transition-colors">
+          <Link to="/app/wallet" className="block w-full text-center text-[#57534c] text-base font-medium py-2 border border-[#dedbd4] rounded-xl hover:bg-[#ffffff] transition-colors">
             View All
-          </button>
+          </Link>
         </div>
       </div>
 

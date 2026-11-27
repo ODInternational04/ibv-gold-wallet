@@ -42,6 +42,11 @@ Support: [https://app.db.com/support](https://app.db.com/support)
 
 ## Admin operations
 
+The customer navigation includes **My Wallet** at `/app/wallet`, with all confirmed
+purchases, original purchase amounts, owned quantities, current admin-based
+redemption values, search and pagination. It is restricted to the signed-in
+customer's records. The dashboard's View All link opens this page.
+
 Run `npm run dev` and open `/admin/login`. Sign in with the existing Supabase
 account assigned `admin` in `public.user_roles`. The dashboard is at `/admin`.
 

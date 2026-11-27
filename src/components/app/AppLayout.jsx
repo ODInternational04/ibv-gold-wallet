@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link, useLocation, Outlet } from "react-router-dom";
 import {
-  LayoutDashboard, Scale, ArrowLeftRight,
+  LayoutDashboard, Scale, ArrowLeftRight, Wallet,
   Bell, HelpCircle, Settings, ChevronRight, ChevronLeft, User, ChevronDown, Menu, X, LogOut, ShieldAlert, Clock
 } from "lucide-react";
 import { useIsMobile } from "../../hooks/use-mobile";
@@ -10,6 +10,7 @@ import { useVerification } from "@/hooks/useVerification";
 
 const navItems = [
   { label: "DASHBOARD", icon: LayoutDashboard, path: "/app/dashboard" },
+  { label: "MY WALLET", icon: Wallet, path: "/app/wallet" },
   { label: "REDEEM", icon: Scale, path: "/app/vault" },
   { label: "TRANSACT", icon: ArrowLeftRight, path: "/app/transact", hasArrow: true },
   { label: "NOTIFICATIONS", icon: Bell, path: "/app/notifications" },

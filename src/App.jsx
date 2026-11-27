@@ -13,6 +13,7 @@ import SignUp from './pages/SignUp';
 import AppLayout from './components/app/AppLayout';
 import Dashboard from './pages/app/Dashboard';
 import GoldVault from './pages/app/GoldVault';
+import MyWallet from './pages/app/MyWallet';
 import Transact from './pages/app/Transact';
 import Explore from './pages/app/Explore';
 import Rewards from './pages/app/Rewards';
@@ -59,6 +60,7 @@ const AuthenticatedApp = () => {
         <Route element={<AppLayout />}>
           <Route path="/app/dashboard" element={<Dashboard />} />
           <Route path="/app/vault" element={<GoldVault />} />
+          <Route path="/app/wallet" element={<MyWallet />} />
           <Route path="/app/transact" element={<Transact />} />
           <Route path="/app/explore" element={<Explore />} />
           <Route path="/app/rewards" element={<Rewards />} />

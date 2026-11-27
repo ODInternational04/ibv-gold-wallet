@@ -16,10 +16,16 @@ select set_config('request.jwt.claim.sub',(select buyer::text from redemption_su
 set local role authenticated;
 select pg_temp.check_summary((public.redemption_summary()->>'redeemable_cents')::numeric=150000,'unit prices multiply by owned quantities, including fractional products');
 select pg_temp.check_summary((public.redemption_summary()->>'total_oz')::numeric=1.5,'owned ounces');
+select pg_temp.check_summary((public.wallet_purchases()->>'purchase_count')::integer=2,'My Wallet includes all owned confirmed purchases');
+select pg_temp.check_summary((public.wallet_purchases()->>'purchase_total_cents')::numeric=380000,'My Wallet shows original amounts paid');
+select pg_temp.check_summary(jsonb_array_length(public.wallet_purchases()->'purchases')=2,'My Wallet returns purchase rows');
+select pg_temp.check_summary((public.wallet_purchases(0,'1/4oz')->>'match_count')::integer=1,'My Wallet search recognizes legacy fraction spellings');
+select pg_temp.check_summary(jsonb_array_length(public.wallet_purchases(1,'')->'purchases')=0,'My Wallet pagination does not repeat purchases');
 select pg_temp.check_summary((public.redemption_summary()->>'missing_prices')::integer=0,'legacy Unicode fractions match the admin ASCII product name');
 select pg_temp.check_summary((public.redemption_summary()->>'missing_prices')::integer=0,'hidden owned product and renamed order retain correct price linkage');
 select set_config('request.jwt.claim.sub',(select other_buyer::text from redemption_summary_test),true);
 select pg_temp.check_summary((public.redemption_summary()->>'redeemable_cents')::numeric=0,'empty account cannot see another customer valuation');
+select pg_temp.check_summary((public.wallet_purchases()->>'purchase_count')::integer=0 and jsonb_array_length(public.wallet_purchases()->'purchases')=0,'My Wallet cannot expose another customer purchases');
 reset role;
 update public.transactions set product_id=(select quarter_product from redemption_summary_test), product_unit_oz=0.25 where id=(select quarter_tx from redemption_summary_test);
 update public.products set name='Renamed quarter coin '||id::text,oz_amount=0.5 where id=(select quarter_product from redemption_summary_test);

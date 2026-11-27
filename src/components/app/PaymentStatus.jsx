@@ -35,6 +35,7 @@ export default function PaymentStatus({ orderId }) {
   useEffect(() => {
     if (query.data?.status === "paid") {
       client.invalidateQueries({ queryKey: ["holdings"] });
+      client.invalidateQueries({ queryKey: ["wallet-purchases"] });
       client.invalidateQueries({ queryKey: ["redemption-summary"] });
     }
   }, [query.data?.status, client]);
