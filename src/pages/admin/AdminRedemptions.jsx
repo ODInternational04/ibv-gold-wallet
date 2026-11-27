@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { RefreshCw, Save } from "lucide-react";
 import SpotPrice from "@/components/admin/SpotPrice";
+import { useGoldPrice } from "@/hooks/useGoldPrice";
+import { spotSellingPrice } from "@/lib/spot-selling-price.mjs";
 import { supabase } from "@/utils/supabase/client";
 import { loadProducts, money, result, toCents } from "@/lib/wallet-api";
 import {
@@ -23,10 +25,43 @@ function RedemptionValue({ product, onSaved }) {
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [generating, setGenerating] = useState(false);
+  const [generatedNote, setGeneratedNote] = useState("");
+  const { refetch: refreshSpot } = useGoldPrice();
   const saving = useRef(false);
+  const generatingRef = useRef(false);
+  const generate = async () => {
+    if (generatingRef.current || saving.current) return;
+    generatingRef.current = true;
+    setGenerating(true);
+    setError(null);
+    setSaved(false);
+    setGeneratedNote("");
+    try {
+      if (
+        !Number.isFinite(Number(product.oz_amount)) ||
+        Number(product.oz_amount) <= 0
+      )
+        throw new Error("Set a positive gold weight for this product first.");
+      const latest = await refreshSpot();
+      if (latest.error || !latest.data)
+        throw new Error(
+          "Could not fetch the current spot price. Please try again.",
+        );
+      setValue(spotSellingPrice(latest.data.priceZAR, product.oz_amount));
+      setGeneratedNote(
+        `Generated from ${money(Math.round(latest.data.priceZAR * 100))} per troy ounce × ${product.oz_amount} oz. No markup added. Click Save to apply.`,
+      );
+    } catch (err) {
+      setError(err);
+    } finally {
+      generatingRef.current = false;
+      setGenerating(false);
+    }
+  };
   const save = async (e) => {
     e.preventDefault();
-    if (saving.current) return;
+    if (saving.current || generatingRef.current) return;
     saving.current = true;
     setBusy(true);
     setError(null);
@@ -88,21 +123,41 @@ function RedemptionValue({ product, onSaved }) {
                 max="100000000"
                 step="0.01"
                 value={value}
-                disabled={busy}
+                disabled={busy || generating}
                 onChange={(e) => {
                   setValue(e.target.value);
                   setSaved(false);
+                  setGeneratedNote("");
                 }}
               />
             </Field>
             <button
               className="admin-button primary"
-              disabled={busy || value === initial}
+              disabled={busy || generating || value === initial}
             >
               <Save size={16} />
               {busy ? "Saving…" : "Save"}
             </button>
           </div>
+          <button
+            type="button"
+            className="admin-button"
+            style={{ marginTop: 10 }}
+            disabled={busy || generating}
+            onClick={generate}
+            aria-label={`Generate redemption value from spot for ${product.name}`}
+          >
+            {generating ? "Fetching spot price…" : "Generate from spot"}
+          </button>
+          {generatedNote && (
+            <p
+              role="status"
+              className="admin-card-note"
+              style={{ marginTop: 8 }}
+            >
+              {generatedNote}
+            </p>
+          )}
           {error && (
             <p role="alert" className="text-base text-red-700 mt-2">
               {error.message}
