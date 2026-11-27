@@ -16,7 +16,7 @@ import {
   Field,
 } from "@/components/admin/AdminUI";
 
-function RedemptionValue({ product, onSaved }) {
+function RedemptionValue({ product, onSaved, disabled }) {
   const initial =
     product.redemption_value_cents == null
       ? ""
@@ -25,43 +25,10 @@ function RedemptionValue({ product, onSaved }) {
   const [error, setError] = useState(null);
   const [busy, setBusy] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [generating, setGenerating] = useState(false);
-  const [generatedNote, setGeneratedNote] = useState("");
-  const { refetch: refreshSpot } = useGoldPrice();
   const saving = useRef(false);
-  const generatingRef = useRef(false);
-  const generate = async () => {
-    if (generatingRef.current || saving.current) return;
-    generatingRef.current = true;
-    setGenerating(true);
-    setError(null);
-    setSaved(false);
-    setGeneratedNote("");
-    try {
-      if (
-        !Number.isFinite(Number(product.oz_amount)) ||
-        Number(product.oz_amount) <= 0
-      )
-        throw new Error("Set a positive gold weight for this product first.");
-      const latest = await refreshSpot();
-      if (latest.error || !latest.data)
-        throw new Error(
-          "Could not fetch the current spot price. Please try again.",
-        );
-      setValue(spotSellingPrice(latest.data.priceZAR, product.oz_amount));
-      setGeneratedNote(
-        `Generated from ${money(Math.round(latest.data.priceZAR * 100))} per troy ounce × ${product.oz_amount} oz. No markup added. Click Save to apply.`,
-      );
-    } catch (err) {
-      setError(err);
-    } finally {
-      generatingRef.current = false;
-      setGenerating(false);
-    }
-  };
   const save = async (e) => {
     e.preventDefault();
-    if (saving.current || generatingRef.current) return;
+    if (saving.current || disabled) return;
     saving.current = true;
     setBusy(true);
     setError(null);
@@ -123,41 +90,21 @@ function RedemptionValue({ product, onSaved }) {
                 max="100000000"
                 step="0.01"
                 value={value}
-                disabled={busy || generating}
+                disabled={busy || disabled}
                 onChange={(e) => {
                   setValue(e.target.value);
                   setSaved(false);
-                  setGeneratedNote("");
                 }}
               />
             </Field>
             <button
               className="admin-button primary"
-              disabled={busy || generating || value === initial}
+              disabled={busy || disabled || value === initial}
             >
               <Save size={16} />
               {busy ? "Saving…" : "Save"}
             </button>
           </div>
-          <button
-            type="button"
-            className="admin-button"
-            style={{ marginTop: 10 }}
-            disabled={busy || generating}
-            onClick={generate}
-            aria-label={`Generate redemption values for ${product.name}`}
-          >
-            {generating ? "Fetching spot price…" : "Generate redemption values"}
-          </button>
-          {generatedNote && (
-            <p
-              role="status"
-              className="admin-card-note"
-              style={{ marginTop: 8 }}
-            >
-              {generatedNote}
-            </p>
-          )}
           {error && (
             <p role="alert" className="text-base text-red-700 mt-2">
               {error.message}
@@ -182,6 +129,86 @@ export default function AdminRedemptions() {
   });
   const [search, setSearch] = useState("");
   const [saved, setSaved] = useState(false);
+  const [bulk, setBulk] = useState(null);
+  const [bulkError, setBulkError] = useState(null);
+  const [bulkBusy, setBulkBusy] = useState(false);
+  const bulkLock = useRef(false);
+  const { refetch: refreshSpot } = useGoldPrice();
+  const generateAll = async () => {
+    if (bulkLock.current) return;
+    bulkLock.current = true;
+    setBulkBusy(true);
+    setBulkError(null);
+    setSaved(false);
+    try {
+      const latest = await refreshSpot();
+      if (latest.error || !latest.data)
+        throw new Error(
+          "Could not fetch the current spot price. Please try again.",
+        );
+      const catalog = await loadProducts(true);
+      const rows = catalog.map((product) => {
+        try {
+          return {
+            product,
+            cents: toCents(
+              spotSellingPrice(latest.data.priceZAR, product.oz_amount),
+            ),
+          };
+        } catch (error) {
+          throw new Error(`${product.name}: ${error.message}`);
+        }
+      });
+      if (!rows.length)
+        throw new Error("Add products before generating redemption values.");
+      setBulk({ rows, spot: latest.data.priceZAR });
+    } catch (error) {
+      setBulkError(error);
+    } finally {
+      setBulkBusy(false);
+      bulkLock.current = false;
+    }
+  };
+  const saveAll = async () => {
+    if (bulkLock.current || !bulk) return;
+    bulkLock.current = true;
+    setBulkBusy(true);
+    setBulkError(null);
+    let completed = 0;
+    try {
+      for (const row of bulk.rows) {
+        // Match the previewed weight and value to avoid overwriting concurrent edits.
+        let update = supabase
+          .from("products")
+          .update({ redemption_value_cents: row.cents })
+          .eq("id", row.product.id)
+          .eq("oz_amount", row.product.oz_amount);
+        update =
+          row.product.redemption_value_cents == null
+            ? update.is("redemption_value_cents", null)
+            : update.eq(
+                "redemption_value_cents",
+                row.product.redemption_value_cents,
+              );
+        await result(update.select("id").single());
+        completed++;
+      }
+      setBulk(null);
+      setSaved(true);
+    } catch (error) {
+      setBulk({ ...bulk, rows: bulk.rows.slice(completed) });
+      setBulkError(
+        new Error(
+          `${completed} saved in this attempt. Remaining values were not saved: ${error.message}. Regenerate if product details changed, or retry Save all.`,
+        ),
+      );
+    } finally {
+      client.invalidateQueries({ queryKey: ["products"] });
+      client.invalidateQueries({ queryKey: ["redemption-summary"] });
+      setBulkBusy(false);
+      bulkLock.current = false;
+    }
+  };
   const products = (query.data ?? []).filter((p) =>
     `${p.name} ${p.sku}`.toLowerCase().includes(search.toLowerCase()),
   );
@@ -213,6 +240,79 @@ export default function AdminRedemptions() {
       </PageHeader>
       <SpotPrice />
       <div className="admin-notice">
+        <p>
+          Generate redemption values for all products, including drafts and
+          products hidden by search. Uses one current spot price × each
+          product’s gold ounces, with no markup. Review below before saving.
+        </p>
+        <button
+          className="admin-button primary"
+          disabled={bulkBusy || query.isPending}
+          onClick={generateAll}
+        >
+          {bulkBusy ? "Working…" : "Generate all redemption values"}
+        </button>
+      </div>
+      <ErrorMessage error={bulkError} />
+      {bulk && (
+        <section
+          className="admin-spot"
+          aria-label="Generated redemption values preview"
+        >
+          <h2>Review generated redemption values</h2>
+          <p>
+            Spot used: {money(Math.round(bulk.spot * 100))} per troy ounce.{" "}
+            {bulk.rows.length} products awaiting save.
+          </p>
+          <div className="admin-table-wrap">
+            <table className="admin-table">
+              <thead>
+                <tr>
+                  <th>PRODUCT</th>
+                  <th>CURRENT VALUE</th>
+                  <th>GENERATED REDEMPTION VALUE</th>
+                </tr>
+              </thead>
+              <tbody>
+                {bulk.rows.map(({ product, cents }) => (
+                  <tr key={product.id}>
+                    <td>
+                      {product.name}
+                      <small>{product.sku}</small>
+                    </td>
+                    <td>
+                      {product.redemption_value_cents == null
+                        ? "Not set"
+                        : money(product.redemption_value_cents)}
+                    </td>
+                    <td>{money(cents)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="admin-actions" style={{ marginTop: 16 }}>
+            <button
+              className="admin-button primary"
+              disabled={bulkBusy}
+              onClick={saveAll}
+            >
+              Save all redemption values
+            </button>
+            <button
+              className="admin-button"
+              disabled={bulkBusy}
+              onClick={() => {
+                setBulk(null);
+                setBulkError(null);
+              }}
+            >
+              Discard preview
+            </button>
+          </div>
+        </section>
+      )}
+      <div className="admin-notice">
         Enter the redemption value for one unit of each product. Purchase prices
         are managed under Products &amp; prices. Published products with a saved
         redemption value appear in the customer vault; updates refresh there
@@ -230,8 +330,8 @@ export default function AdminRedemptions() {
       </div>
       {saved && (
         <p className="admin-success" role="status">
-          Redemption value saved. The customer vault will display the new value
-          within 15 seconds.
+          Redemption values saved. The customer vault will display the new
+          values within 15 seconds.
         </p>
       )}
       {query.isPending ? (
@@ -252,6 +352,7 @@ export default function AdminRedemptions() {
                 <RedemptionValue
                   key={`${p.id}:${p.redemption_value_cents}`}
                   product={p}
+                  disabled={bulkBusy || bulk !== null}
                   onSaved={refresh}
                 />
               ))}
