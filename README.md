@@ -60,6 +60,9 @@ account assigned `admin` in `public.user_roles`. The dashboard is at `/admin`.
   product, multiplied by the number of units held (including fractional coins).
   They do not use spot or purchase prices. Values refresh every 15 seconds; if a
   holding has no unambiguous admin quote, the total shows awaiting admin valuation.
+  Historical product names with fractional symbols (such as `¼oz` and `1/4oz`)
+  are matched consistently. Existing holdings are linked to stable product IDs
+  and unit-weight snapshots so subsequent product renames do not detach quotes.
 - **Withdrawals:** customers request withdrawals under Transact → Withdraw. Only
   verified customers with sufficient settled cash can submit requests. Funds are
   reserved atomically. Verify bank ownership before approval, mark processing when
