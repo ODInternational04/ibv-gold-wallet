@@ -145,9 +145,9 @@ function RedemptionValue({ product, onSaved }) {
             style={{ marginTop: 10 }}
             disabled={busy || generating}
             onClick={generate}
-            aria-label={`Generate redemption value from spot for ${product.name}`}
+            aria-label={`Generate redemption values for ${product.name}`}
           >
-            {generating ? "Fetching spot price…" : "Generate from spot"}
+            {generating ? "Fetching spot price…" : "Generate redemption values"}
           </button>
           {generatedNote && (
             <p
