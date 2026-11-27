@@ -1,3 +1,62 @@
+.admin-spot {
+  background: #fff;
+  border: 1px solid #dfd3b9;
+  border-top: 4px solid #b48a38;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.admin-spot-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.admin-spot h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.admin-spot p {
+  margin: 8px 0;
+}
+.admin-spot-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 24px 0;
+}
+.admin-spot dt {
+  color: #645f57;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.admin-spot dd {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.admin-spot-note {
+  font-size: 14px;
+  color: #645f57;
+}
+@media (max-width: 1100px) {
+  .admin-spot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 480px) {
+  .admin-spot {
+    padding: 18px;
+  }
+  .admin-spot-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
 .admin-shell {
   --admin-muted: #645f57;
   min-height: 100vh;

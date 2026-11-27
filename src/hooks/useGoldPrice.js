@@ -1,20 +1,26 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 async function fetchGoldPriceZAR() {
-  const res = await fetch('/.netlify/functions/goldprice');
-  if (!res.ok) throw new Error('Failed to fetch gold price');
+  const res = await fetch("/api/prices");
+  if (!res.ok) throw new Error("Failed to fetch gold price");
   const data = await res.json();
-  if (!data.priceZAR) throw new Error('Invalid price data');
-  return data.priceZAR;
+  if (!(Number.isFinite(data.priceZAR) && data.priceZAR > 0))
+    throw new Error("Invalid price data");
+  return data;
 }
 
 export function useGoldPrice() {
-  const { data: priceZAR, isLoading, isError } = useQuery({
-    queryKey: ['goldPrice'],
+  const query = useQuery({
+    queryKey: ["goldPrice"],
     queryFn: fetchGoldPriceZAR,
-    staleTime: 1000 * 60 * 5,   // cache for 5 minutes
-    retry: 2,
+    staleTime: 60_000,
+    refetchInterval: 60_000,
+    retry: 1,
   });
 
-  return { priceZAR: priceZAR ?? null, isLoading, isError };
+  return {
+    ...query,
+    prices: query.data ?? null,
+    priceZAR: query.data?.priceZAR ?? null,
+  };
 }

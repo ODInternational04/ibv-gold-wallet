@@ -4,6 +4,7 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "functions": {
+    "api/prices.js": { "maxDuration": 30 },
     "api/payfast/*.js": { "maxDuration": 30 }
   },
   "rewrites": [

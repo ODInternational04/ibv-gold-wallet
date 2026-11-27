@@ -161,3 +161,14 @@ After all variables are saved and the deployment is ready, sign in with a verifi
 customer account and use Buy to open PayFast. The customer must complete any live
 payment themselves. A successful browser redirect initially displays pending
 confirmation, then updates holdings after the independently confirmed notification.
+# Gold spot price
+
+The admin Redemption values page displays `/api/prices`, a read-only Vercel function.
+It fetches XAU in USD per troy ounce from Gold API and USD/ZAR from Wise, falling
+back to Frankfurter for FX. ZAR per ounce = USD per ounce × USD/ZAR; ZAR per gram
+= ZAR per ounce ÷ 31.1034768. No additional environment variables are required.
+Responses are cached for 60 seconds and the panel refreshes every minute. Failed
+feeds show an unavailable message; a failed refresh labels previously fetched data.
+This reference never updates manually configured product redemption values.
+Use Vercel dev to run the API locally; plain Vite serves the frontend only.
+

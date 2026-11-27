@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { RefreshCw, Save } from "lucide-react";
+import SpotPrice from "@/components/admin/SpotPrice";
 import { supabase } from "@/utils/supabase/client";
 import { loadProducts, money, result, toCents } from "@/lib/wallet-api";
 import {
@@ -152,6 +153,7 @@ export default function AdminRedemptions() {
           View customer vault
         </Link>
       </PageHeader>
+      <SpotPrice />
       <div className="admin-notice">
         Enter the redemption value for one unit of each product. Purchase prices
         are managed under Products &amp; prices. Published products with a saved
